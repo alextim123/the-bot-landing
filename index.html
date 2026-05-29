@@ -174,7 +174,13 @@
 
     html {
       scroll-behavior: smooth;
+      scrollbar-width: none;
       text-size-adjust: 100%;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
     }
 
     body {
@@ -187,6 +193,7 @@
       font-size: 1rem;
       line-height: 1.55;
       letter-spacing: 0;
+      -ms-overflow-style: none;
     }
 
     body.nav-open {
