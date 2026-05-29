@@ -505,6 +505,12 @@
       outline: none;
     }
 
+    .button:disabled {
+      cursor: wait;
+      opacity: 0.72;
+      transform: none;
+    }
+
     .button-primary {
       color: var(--color-ink);
       background: var(--color-primary);
@@ -1364,37 +1370,24 @@
         </div>
 
         <article class="form-card" aria-label="Форма заявки на ранний доступ">
-          <form class="access-form" data-access-form novalidate>
+          <form class="access-form" action="https://api.web3forms.com/submit" method="POST" data-access-form novalidate>
+            <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
+            <input type="hidden" name="subject" value="Новая заявка на ранний доступ THE БОТ Platform">
             <div class="form-grid">
               <div class="field">
-                <label for="name">Имя</label>
-                <input id="name" name="name" type="text" autocomplete="name" required placeholder="Александр">
-              </div>
-              <div class="field">
-                <label for="school">Название школы</label>
-                <input id="school" name="school" type="text" autocomplete="organization" required placeholder="Название центра">
-              </div>
-              <div class="field">
                 <label for="students">Количество активных учеников</label>
-                <select id="students" name="students" required>
+                <select id="students" name="active_students" required>
                   <option value="">Выберите диапазон</option>
-                  <option value="50-100">50-100</option>
-                  <option value="100-300">100-300</option>
-                  <option value="300-1000">300-1000</option>
-                  <option value="1000+">1000+</option>
+                  <option value="Меньше 100">Меньше 100</option>
+                  <option value="100-250">100-250</option>
+                  <option value="250-500">250-500</option>
+                  <option value="500-1000">500-1000</option>
+                  <option value="Больше 1000">Больше 1000</option>
                 </select>
               </div>
               <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required placeholder="hello@school.ru">
-              </div>
-              <div class="field full">
                 <label for="telegram">Telegram</label>
                 <input id="telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="@username">
-              </div>
-              <div class="field full">
-                <label for="operations">Коротко: как сейчас устроено управление школой?</label>
-                <textarea id="operations" name="operations" required placeholder="Например: расписание в Google Calendar, отчёты в Telegram, оплаты сверяем вручную"></textarea>
               </div>
             </div>
             <p class="form-footnote">
@@ -1530,29 +1523,52 @@
       }
 
       if (form && status && submitButton) {
-        form.addEventListener("submit", function (event) {
+        form.addEventListener("submit", async function (event) {
           event.preventDefault();
           status.classList.remove("is-error");
 
           if (!form.checkValidity()) {
-            status.textContent = "Заполните обязательные поля, чтобы подготовить заявку.";
+            status.textContent = "Выберите количество активных учеников и укажите Telegram.";
             status.classList.add("is-error");
             form.reportValidity();
             return;
           }
 
           var data = new FormData(form);
-          var school = data.get("school") || "вашей школы";
 
           submitButton.disabled = true;
-          submitButton.textContent = "Заявка подготовлена";
-          status.textContent = "Готово: заявка для " + school + " подготовлена. Это клиентская заглушка, данные никуда не отправлены.";
-          form.reset();
+          submitButton.textContent = "Отправляем...";
+          status.textContent = "";
 
-          window.setTimeout(function () {
+          try {
+            var response = await fetch(form.action, {
+              method: form.method,
+              body: data,
+              headers: {
+                "Accept": "application/json"
+              }
+            });
+            var result = {};
+
+            try {
+              result = await response.json();
+            } catch (error) {
+              result = {};
+            }
+
+            if (!response.ok || result.success === false) {
+              throw new Error(result.message || "Не удалось отправить заявку.");
+            }
+
+            status.textContent = "Заявка отправлена. Мы свяжемся с вами в Telegram.";
+            form.reset();
+          } catch (error) {
+            status.textContent = error.message || "Не удалось отправить заявку. Попробуйте ещё раз или напишите на hello@the-bot.ru.";
+            status.classList.add("is-error");
+          } finally {
             submitButton.disabled = false;
             submitButton.textContent = "Подать заявку";
-          }, 2600);
+          }
         });
       }
     })();
