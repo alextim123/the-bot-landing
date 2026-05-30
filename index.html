@@ -211,10 +211,8 @@
 
     body {
       margin: 0;
-      color: var(--color-ink);
-      background:
-        linear-gradient(180deg, rgba(140, 0, 255, 0.08), rgba(250, 250, 252, 0) 22rem),
-        var(--color-page);
+      color: var(--color-surface);
+      background: #03040E;
       font-family: var(--font-body);
       font-size: 1rem;
       line-height: 1.55;
@@ -358,10 +356,18 @@
 
     .section {
       padding-block: var(--space-9);
+      color: var(--color-surface);
+      background: #03040E;
     }
 
     .section.compact {
       padding-block: var(--space-8);
+    }
+
+    .section h2,
+    .section h3,
+    .site-footer strong {
+      color: var(--color-surface);
     }
 
     .section-header {
@@ -371,7 +377,7 @@
 
     .eyebrow {
       margin: 0 0 var(--space-3);
-      color: var(--color-primary-strong);
+      color: var(--color-primary);
       font-family: var(--font-label);
       font-size: 0.8rem;
       font-weight: 800;
@@ -414,7 +420,7 @@
     }
 
     .lead {
-      color: var(--color-muted);
+      color: rgba(255, 255, 255, 0.68);
       font-size: 1.04rem;
       line-height: 1.65;
     }
@@ -428,10 +434,7 @@
       min-height: 100svh;
       padding-block: calc(var(--header-height) + var(--space-7)) var(--space-8);
       color: var(--color-surface);
-      background:
-        radial-gradient(circle at 50% 76%, rgba(140, 0, 255, 0.12), rgba(140, 0, 255, 0) 22rem),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0) 24%),
-        #03040E;
+      background: #03040E;
     }
 
     .hero-stage {
@@ -531,7 +534,7 @@
     }
 
     .hero-social-proof {
-      margin-top: clamp(1.8rem, 3.6vw, 2.45rem);
+      margin-top: clamp(1rem, 2.2vw, 1.6rem);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -569,8 +572,8 @@
     }
 
     .hero-waitlist-form {
-      width: min(100%, 33.5rem);
-      margin: clamp(2rem, 3.8vw, 2.6rem) auto 0;
+      width: min(100%, 29.5rem);
+      margin: clamp(1.75rem, 3.2vw, 2.35rem) auto 0;
       padding: 0;
       display: grid;
       gap: var(--space-3);
@@ -582,7 +585,7 @@
 
     .hero-waitlist-form input {
       min-width: 0;
-      min-height: 3.35rem;
+      min-height: 2.9rem;
       border: 0;
       border-radius: 999px;
       padding: 0 var(--space-4);
@@ -601,7 +604,7 @@
 
     .hero-waitlist-form .button {
       width: 100%;
-      min-height: 3.35rem;
+      min-height: 2.9rem;
       border-radius: 999px;
       color: var(--color-surface);
       background: var(--color-primary);
@@ -614,11 +617,16 @@
     }
 
     .hero-form-status {
-      min-height: 1.35rem;
-      margin-top: var(--space-3);
+      min-height: 1rem;
+      margin-top: var(--space-2);
       color: var(--color-primary);
       font-size: 0.88rem;
       font-weight: 800;
+    }
+
+    .hero-form-status:empty {
+      min-height: 0;
+      margin-top: 0;
     }
 
     .hero-form-status.is-error {
@@ -627,7 +635,7 @@
 
     .hero-product-preview {
       width: min(100%, 58rem);
-      margin: clamp(2.75rem, 5.6vw, 4.5rem) auto 0;
+      margin: clamp(3.25rem, 5.8vw, 4.75rem) auto 0;
       position: relative;
       isolation: isolate;
     }
@@ -652,9 +660,9 @@
       width: 100%;
       padding: 0.42rem;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(0, 0, 0, 0.88);
       border-radius: 1.3rem;
-      background: rgba(255, 255, 255, 0.92);
+      background: #0B0B0F;
       box-shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
     }
 
@@ -663,6 +671,7 @@
       aspect-ratio: 16 / 9;
       display: block;
       overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.88);
       border-radius: 0.95rem;
       background: #03040E;
       object-fit: cover;
@@ -745,10 +754,14 @@
       border-block: 1px solid var(--color-line);
     }
 
+    .platform-section {
+      padding-top: clamp(5rem, 8vw, 7rem);
+    }
+
     .text-flow {
       display: grid;
       gap: var(--space-4);
-      color: var(--color-muted);
+      color: rgba(255, 255, 255, 0.68);
     }
 
     .symptom-grid,
@@ -761,15 +774,15 @@
     .symptom-card,
     .feature-card,
     .growth-item {
-      border: 1px solid var(--color-line);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-md);
-      background: var(--color-surface);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .symptom-card,
     .growth-item {
       padding: var(--space-4);
-      color: var(--color-muted);
+      color: rgba(255, 255, 255, 0.68);
       font-weight: 700;
     }
 
@@ -791,9 +804,9 @@
 
     .promise-panel {
       padding: var(--space-5);
-      border: 1px solid var(--color-line);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-md);
-      background: var(--color-surface);
+      background: rgba(255, 255, 255, 0.06);
       box-shadow: var(--shadow-sm);
     }
 
@@ -802,7 +815,7 @@
     }
 
     .promise-panel p {
-      color: var(--color-muted);
+      color: rgba(255, 255, 255, 0.68);
     }
 
     .growth-grid {
@@ -829,11 +842,11 @@
     }
 
     .feature-card p {
-      color: var(--color-muted);
+      color: rgba(255, 255, 255, 0.68);
     }
 
     .access-section {
-      background: var(--color-ink);
+      background: #03040E;
       color: var(--color-surface);
     }
 
@@ -969,9 +982,9 @@
     }
 
     .faq-item {
-      border: 1px solid var(--color-line);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-md);
-      background: var(--color-surface);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .faq-item summary {
@@ -981,7 +994,7 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--space-4);
-      color: var(--color-ink);
+      color: var(--color-surface);
       font-weight: 850;
       cursor: pointer;
       list-style: none;
@@ -1000,8 +1013,8 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      color: var(--color-ink);
-      background: var(--color-primary-soft);
+      color: var(--color-surface);
+      background: rgba(140, 0, 255, 0.28);
       font-size: 1.15rem;
       font-weight: 800;
     }
@@ -1012,13 +1025,13 @@
 
     .faq-answer {
       padding: 0 var(--space-4) var(--space-4);
-      color: var(--color-muted);
+      color: rgba(255, 255, 255, 0.68);
     }
 
     .site-footer {
       padding-block: var(--space-8);
-      border-top: 1px solid var(--color-line);
-      background: var(--color-surface);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      background: #03040E;
     }
 
     .footer-grid {
@@ -1044,7 +1057,7 @@
     .footer-brand p,
     .footer-legal,
     .footer-links {
-      color: var(--color-muted);
+      color: rgba(255, 255, 255, 0.62);
       font-size: 0.9rem;
     }
 
@@ -1065,7 +1078,7 @@
 
     .footer-links a:hover,
     .footer-links a:focus-visible {
-      color: var(--color-ink);
+      color: var(--color-surface);
       outline: none;
     }
 
@@ -1268,6 +1281,14 @@
             <span>Из ручного управления в прозрачную систему, чтобы</span>
             <span>вы занимались любимым делом – масштабированием.</span>
           </p>
+          <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в WaitList." novalidate>
+            <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
+            <input type="hidden" name="subject" value="Новая заявка в WaitList THE БОТ Platform">
+            <label class="sr-only" for="hero-telegram">Ваш Telegram</label>
+            <input id="hero-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
+            <button class="button" type="submit" data-submit-button>ПОПАСТЬ В WAITLIST</button>
+          </form>
+          <p class="hero-form-status" data-form-status aria-live="polite"></p>
           <div class="hero-social-proof" aria-label="Социальное доказательство">
             <div class="proof-avatars" aria-hidden="true">
               <span class="proof-avatar">
@@ -1304,14 +1325,6 @@
             </div>
             <span>С нами уже более 15 онлайн-школ</span>
           </div>
-          <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в WaitList." novalidate>
-            <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
-            <input type="hidden" name="subject" value="Новая заявка в WaitList THE БОТ Platform">
-            <label class="sr-only" for="hero-telegram">Ваш Telegram</label>
-            <input id="hero-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
-            <button class="button" type="submit" data-submit-button>ПОПАСТЬ В WAITLIST</button>
-          </form>
-          <p class="hero-form-status" data-form-status aria-live="polite"></p>
           <div class="hero-product-preview" data-scroll-video-wrap>
             <div class="preview-device">
               <video class="preview-video" data-scroll-video muted loop playsinline preload="metadata" tabindex="0" aria-label="Демонстрация интерфейса THE БОТ Platform">
@@ -1324,54 +1337,7 @@
       </div>
     </section>
 
-    <section class="section pain-section" id="problem" aria-labelledby="problem-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Проблема роста</p>
-          <h2 id="problem-title">Школа растёт быстрее, чем её система управления</h2>
-        </div>
-        <div class="promise-grid">
-          <div class="text-flow">
-            <p>На старте репетиторский центр может держаться на владельце, администраторе, таблицах, Telegram и Google Calendar. Но после определённого масштаба эта модель начинает ломаться.</p>
-            <p>Чем больше учеников, преподавателей и занятий, тем больше исключений: переносов, отмен, забытых отчётов, неточных выплат, несинхронных данных и ручных сверок.</p>
-            <p>Владелец всё чаще становится главным узлом управления: держит контекст в голове, контролирует процессы вручную и тушит операционные пожары вместо того, чтобы заниматься ростом.</p>
-          </div>
-          <div class="symptom-grid" aria-label="Симптомы операционного хаоса">
-            <article class="symptom-card">расписание живёт в нескольких местах</article>
-            <article class="symptom-card">данные по занятиям, оплатам и выплатам приходится сверять вручную</article>
-            <article class="symptom-card">отчёты преподавателей сдаются нерегулярно</article>
-            <article class="symptom-card">качество работы команды видно фрагментарно</article>
-            <article class="symptom-card">владелец не видит целостную картину по школе</article>
-            <article class="symptom-card">рост требует всё больше административного контроля</article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="promise-title">
-      <div class="container promise-grid">
-        <div>
-          <p class="eyebrow">Новый уровень управления</p>
-          <h2 id="promise-title">Постройте систему, которая работает без вашего постоянного вмешательства</h2>
-        </div>
-        <div class="promise-panel">
-          <h3>THE БОТ Platform помогает превратить ручную операционку репетиторского центра в управляемую систему.</h3>
-          <p>
-            Вместо того чтобы собирать картину школы из чатов, таблиц, календарей и памяти сотрудников, владелец получает единое пространство, где видны занятия, пользователи, регламенты, деньги, отчёты и ключевые управленческие показатели.
-          </p>
-          <div class="growth-grid" aria-label="Что освобождает внимание владельца">
-            <div class="growth-item">маркетинг</div>
-            <div class="growth-item">продажи</div>
-            <div class="growth-item">найм сильных людей</div>
-            <div class="growth-item">развитие продукта</div>
-            <div class="growth-item">контроль качества</div>
-            <div class="growth-item">стратегический рост школы</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section compact" id="platform" aria-labelledby="platform-title">
+    <section class="section compact platform-section" id="platform" aria-labelledby="platform-title">
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">Что объединяет платформа</p>
