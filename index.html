@@ -286,17 +286,17 @@
       position: absolute;
       inset: 0 0 auto;
       z-index: 50;
-      min-height: calc(var(--header-height) + var(--space-4));
+      min-height: calc(var(--header-height) + var(--space-5));
       color: var(--color-surface);
       background: transparent;
     }
 
     .header-inner {
-      min-height: calc(var(--header-height) + var(--space-4));
+      min-height: calc(var(--header-height) + var(--space-5));
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: var(--space-4);
+      padding-top: var(--space-5);
     }
 
     .brand {
@@ -309,7 +309,7 @@
     }
 
     .brand-logo {
-      width: 5.9rem;
+      width: clamp(3.6rem, 3.6vw, 4.25rem);
       height: auto;
       flex: 0 0 auto;
       border-radius: 0;
@@ -426,7 +426,7 @@
     .site-hero {
       position: relative;
       min-height: 100svh;
-      padding-block: calc(var(--header-height) + var(--space-5)) var(--space-8);
+      padding-block: calc(var(--header-height) + var(--space-7)) var(--space-8);
       color: var(--color-surface);
       background:
         radial-gradient(circle at 50% 76%, rgba(140, 0, 255, 0.12), rgba(140, 0, 255, 0) 22rem),
@@ -435,7 +435,7 @@
     }
 
     .hero-stage {
-      min-height: calc(100svh - var(--header-height) - var(--space-7));
+      min-height: calc(100svh - var(--header-height) - var(--space-9));
       display: flex;
       justify-items: center;
       align-items: flex-start;
@@ -450,8 +450,8 @@
 
     .site-hero h1 {
       color: var(--color-surface);
-      font-size: clamp(1.72rem, 8.45vw, 5.2rem);
-      line-height: 0.9;
+      font-size: clamp(1.45rem, 7.15vw, 3.9rem);
+      line-height: 0.86;
     }
 
     .site-hero h1 span {
@@ -461,7 +461,7 @@
 
     .hero-kicker {
       width: min(100%, 43rem);
-      margin: var(--space-5) auto 0;
+      margin: clamp(1.35rem, 2.7vw, 1.8rem) auto 0;
       color: rgba(255, 255, 255, 0.76);
       font-size: clamp(0.83rem, 3.35vw, 1.18rem);
       font-weight: 500;
@@ -470,7 +470,6 @@
 
     .hero-kicker span {
       display: block;
-      white-space: nowrap;
     }
 
     .hero-actions {
@@ -532,7 +531,7 @@
     }
 
     .hero-social-proof {
-      margin-top: var(--space-5);
+      margin-top: clamp(1.8rem, 3.6vw, 2.45rem);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -571,7 +570,7 @@
 
     .hero-waitlist-form {
       width: min(100%, 33.5rem);
-      margin: var(--space-6) auto 0;
+      margin: clamp(2rem, 3.8vw, 2.6rem) auto 0;
       padding: 0;
       display: grid;
       gap: var(--space-3);
@@ -666,7 +665,7 @@
 
     .countdown-compact {
       width: auto;
-      margin: 0 0 var(--space-5);
+      margin: 0 0 clamp(2.25rem, 4.4vw, 3rem);
       padding: 0;
       display: block;
       border: 0;
@@ -1044,7 +1043,11 @@
       }
 
       .site-hero h1 {
-        font-size: clamp(3.05rem, 7.4vw, 4.35rem);
+        font-size: clamp(3rem, 5.7vw, 3.55rem);
+      }
+
+      .hero-kicker span {
+        white-space: nowrap;
       }
 
       .hero-waitlist-form {
@@ -1123,15 +1126,15 @@
       }
 
       .site-hero {
-        padding-block: calc(var(--header-height) + var(--space-6)) var(--space-8);
+        padding-block: calc(var(--header-height) + var(--space-8)) var(--space-8);
       }
 
       .hero-stage {
-        min-height: calc(100svh - var(--header-height) - var(--space-8));
+        min-height: calc(100svh - var(--header-height) - var(--space-10));
       }
 
       .site-hero h1 {
-        font-size: clamp(4.35rem, 6.6vw, 5.2rem);
+        font-size: clamp(3.55rem, 4.9vw, 3.9rem);
       }
 
       .section {
