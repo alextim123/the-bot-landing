@@ -457,9 +457,13 @@
       line-height: 0.86;
     }
 
-    .site-hero h1 span {
+    .site-hero h1 > span {
       display: block;
       white-space: nowrap;
+    }
+
+    .site-hero h1 .hero-title-accent {
+      color: var(--color-primary);
     }
 
     .hero-kicker {
@@ -1255,9 +1259,9 @@
             <p class="countdown-caption">До официального релиза</p>
           </div>
           <h1 id="hero-title">
-            <span>МАСШТАБИРУЙТЕ</span>
+            <span class="hero-title-accent">МАСШТАБИРУЙТЕ</span>
             <span>РЕПЕТИТОРСКИЙ ЦЕНТР</span>
-            <span>БЕЗ ХАОСА В ОПЕРАЦИОНКЕ</span>
+            <span><span class="hero-title-accent">БЕЗ ХАОСА</span> В ОПЕРАЦИОНКЕ</span>
           </h1>
           <p class="hero-kicker">
             <span>Из ручного управления в прозрачную систему, чтобы</span>
