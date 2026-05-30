@@ -625,6 +625,49 @@
       color: #FFB4AB;
     }
 
+    .hero-product-preview {
+      width: min(100%, 58rem);
+      margin: clamp(2.75rem, 5.6vw, 4.5rem) auto 0;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-product-preview::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 42%;
+      z-index: -1;
+      width: min(calc(100vw - 1rem), 66rem);
+      height: 68%;
+      transform: translateX(-50%);
+      border-radius: 2rem 2rem 0 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+        #111113;
+      box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.08), 0 28px 80px rgba(0, 0, 0, 0.32);
+    }
+
+    .preview-device {
+      width: 100%;
+      padding: 0.42rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 1.3rem;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
+    }
+
+    .preview-video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      overflow: hidden;
+      border-radius: 0.95rem;
+      background: #03040E;
+      object-fit: cover;
+    }
+
     .countdown {
       width: min(100%, 46rem);
       padding: var(--space-2);
@@ -1070,6 +1113,25 @@
         padding-inline: var(--space-5);
       }
 
+      .hero-product-preview {
+        width: min(100%, 64rem);
+        margin-top: clamp(3.15rem, 5vw, 5rem);
+      }
+
+      .hero-product-preview::before {
+        top: 45%;
+        border-radius: 2.5rem 2.5rem 0 0;
+      }
+
+      .preview-device {
+        padding: 0.55rem;
+        border-radius: 1.65rem;
+      }
+
+      .preview-video {
+        border-radius: 1.2rem;
+      }
+
       .button {
         width: auto;
       }
@@ -1250,6 +1312,13 @@
             <button class="button" type="submit" data-submit-button>ПОПАСТЬ В WAITLIST</button>
           </form>
           <p class="hero-form-status" data-form-status aria-live="polite"></p>
+          <div class="hero-product-preview" data-scroll-video-wrap>
+            <div class="preview-device">
+              <video class="preview-video" data-scroll-video muted loop playsinline preload="metadata" tabindex="0" aria-label="Демонстрация интерфейса THE БОТ Platform">
+                <source src="Screencust.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1497,6 +1566,7 @@
       var countdownHours = document.querySelector("[data-countdown-hours]");
       var countdownMinutes = document.querySelector("[data-countdown-minutes]");
       var countdownSeconds = document.querySelector("[data-countdown-seconds]");
+      var scrollVideos = document.querySelectorAll("[data-scroll-video]");
 
       function closeNav() {
         if (!toggle || !nav) return;
@@ -1546,6 +1616,68 @@
         updateCountdown();
         window.setInterval(updateCountdown, 1000);
       }
+
+      scrollVideos.forEach(function (video) {
+        var preview = video.closest("[data-scroll-video-wrap]") || video;
+        var hasStarted = false;
+        var isPausedByPointer = false;
+        var lastScrollY = window.scrollY || window.pageYOffset || 0;
+
+        var playVideo = function () {
+          if (isPausedByPointer || document.hidden) return;
+          var playPromise = video.play();
+
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {});
+          }
+        };
+
+        var pauseVideo = function () {
+          video.pause();
+        };
+
+        var handleScroll = function () {
+          var currentScrollY = window.scrollY || window.pageYOffset || 0;
+
+          if (currentScrollY > lastScrollY + 2) {
+            hasStarted = true;
+            playVideo();
+            window.removeEventListener("scroll", handleScroll);
+          }
+
+          lastScrollY = currentScrollY;
+        };
+
+        preview.addEventListener("pointerenter", function () {
+          isPausedByPointer = true;
+          pauseVideo();
+        });
+
+        preview.addEventListener("pointerleave", function () {
+          isPausedByPointer = false;
+          if (hasStarted) playVideo();
+        });
+
+        video.addEventListener("focus", function () {
+          isPausedByPointer = true;
+          pauseVideo();
+        });
+
+        video.addEventListener("blur", function () {
+          isPausedByPointer = false;
+          if (hasStarted) playVideo();
+        });
+
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) {
+            pauseVideo();
+          } else if (hasStarted) {
+            playVideo();
+          }
+        });
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+      });
 
       forms.forEach(function (form) {
         var status = form.querySelector("[data-form-status]");
