@@ -837,11 +837,11 @@
     .problem-solution-card {
       aspect-ratio: 1 / 1;
       min-height: 0;
-      padding: clamp(1.25rem, 2.6vw, 1.65rem);
+      padding: clamp(1.25rem, 2.6vw, 1.7rem);
       display: grid;
-      grid-template-rows: auto minmax(0, 1fr) auto auto;
-      gap: clamp(0.65rem, 1.4vw, 0.95rem);
-      border-radius: var(--radius-md);
+      grid-template-rows: auto minmax(8.5rem, 0.9fr) auto minmax(4.2rem, auto);
+      gap: clamp(0.45rem, 1vw, 0.7rem);
+      border-radius: clamp(1.15rem, 2vw, 1.7rem);
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
         #1A1A1B;
@@ -856,12 +856,16 @@
 
     .problem-card-visual {
       min-height: 0;
+      align-self: start;
       display: grid;
-      place-items: center;
+      place-items: start center;
+      transform: translateY(-0.25rem);
     }
 
     .problem-card-visual img {
-      width: min(70%, 12rem);
+      width: auto;
+      max-width: 72%;
+      max-height: 10.6rem;
       height: auto;
       display: block;
       object-fit: contain;
@@ -1476,7 +1480,8 @@
             <span><span class="hero-title-accent">БЕЗ ХАОСА</span> В ОПЕРАЦИОНКЕ</span>
           </h1>
           <p class="hero-kicker">
-            <span>На удобной и гибкой платформе, созданной специально под вас</span>
+            <span>На удобной и гибкой платформе,</span>
+            <span>созданной специально для вас</span>
           </p>
           <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в WaitList." novalidate>
             <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
@@ -1540,7 +1545,7 @@
               </button>
             </div>
             <div class="project-partner" aria-label="Партнер проекта">
-              <span>Сделано с любовью к образованию вместе с основателем</span>
+              <span>Создано с любовью к образованию вместе с основателем</span>
               <img src="skyeng-white-base.png" alt="Skyeng" width="8503" height="1308" loading="lazy">
             </div>
           </div>
@@ -1555,7 +1560,7 @@
               <article class="problem-solution-card">
                 <span class="problem-card-number">01</span>
                 <div class="problem-card-visual" aria-hidden="true">
-                  <img src="problem-spreadsheets.png" alt="" width="1254" height="1254" loading="lazy">
+                  <img src="problem-spreadsheets.png" alt="" width="1024" height="1024" loading="lazy">
                 </div>
                 <h3>ИЗБАВЬТЕСЬ ОТ ТАБЛИЦ</h3>
                 <p>Соберите расписание, занятия, учеников, преподавателей и все данные школы в одном месте. Больше не нужно бегать по таблицам, чатам и календарям.</p>
@@ -1563,7 +1568,7 @@
               <article class="problem-solution-card">
                 <span class="problem-card-number">02</span>
                 <div class="problem-card-visual" aria-hidden="true">
-                  <img src="problem-student-risk.png" alt="" width="1254" height="1254" loading="lazy">
+                  <img src="problem-student-risk.png" alt="" width="1024" height="1024" loading="lazy">
                 </div>
                 <h3>КОНТРОЛЛИРУЙТЕ УХОД</h3>
                 <p>Ученики редко уходят внезапно: сначала появляются пропуски, отмены и падение NPS. Платформа помогает заметить эти сигналы раньше и вовремя вмешаться.</p>
@@ -1571,7 +1576,7 @@
               <article class="problem-solution-card">
                 <span class="problem-card-number">03</span>
                 <div class="problem-card-visual" aria-hidden="true">
-                  <img src="problem-rules.png" alt="" width="1254" height="1254" loading="lazy">
+                  <img src="problem-rules.png" alt="" width="1024" height="1024" loading="lazy">
                 </div>
                 <h3>СОЗДАЙТЕ РЕГЛАМЕНТЫ</h3>
                 <p>Превратите устные договорённости в систему, которую невозможно обмануть: правила фиксируются в платформе, а нарушения сразу становятся видны.</p>
