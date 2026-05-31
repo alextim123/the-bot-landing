@@ -1262,46 +1262,46 @@
     }
 
     .faq-section {
-      padding-block: 0 clamp(4.5rem, 8vw, 7rem);
+      padding-block: 0 clamp(3rem, 6vw, 5rem);
       background: #03040E;
     }
 
     .faq-header {
-      width: min(100%, 50rem);
-      margin: 0 auto clamp(2rem, 5vw, 3.75rem);
+      width: min(100%, 42rem);
+      margin: 0 auto clamp(1.45rem, 3.5vw, 2.5rem);
       text-align: center;
     }
 
     .faq-header h2 {
       color: var(--color-surface);
-      font-size: clamp(2.3rem, 7vw, 5rem);
-      line-height: 0.92;
+      font-size: clamp(1.9rem, 5.2vw, 3.35rem);
+      line-height: 0.95;
     }
 
     .faq-list {
       display: grid;
-      gap: clamp(1rem, 2.5vw, 1.75rem);
+      gap: clamp(0.75rem, 1.8vw, 1.15rem);
     }
 
     .faq-item {
       overflow: hidden;
       border: 0;
-      border-radius: clamp(1.15rem, 3vw, 2rem);
+      border-radius: clamp(0.95rem, 2.4vw, 1.5rem);
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
         #1A1A1B;
     }
 
     .faq-item summary {
-      min-height: clamp(5.2rem, 10vw, 7.3rem);
-      padding: clamp(1.25rem, 3vw, 2.2rem);
+      min-height: clamp(3.75rem, 6.7vw, 5rem);
+      padding: clamp(0.95rem, 2.2vw, 1.55rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: var(--space-4);
       color: rgba(255, 255, 255, 0.76);
       font-family: var(--font-headline);
-      font-size: clamp(1.45rem, 4.4vw, 2.35rem);
+      font-size: clamp(1.08rem, 3.2vw, 1.65rem);
       font-weight: 400;
       line-height: 0.95;
       cursor: pointer;
@@ -1317,7 +1317,7 @@
       flex: 0 0 auto;
       color: rgba(255, 255, 255, 0.7);
       font-family: var(--font-body);
-      font-size: clamp(2.2rem, 5vw, 3.15rem);
+      font-size: clamp(1.75rem, 4vw, 2.35rem);
       font-weight: 700;
       line-height: 1;
     }
@@ -1327,45 +1327,49 @@
     }
 
     .faq-answer {
-      max-width: 66rem;
-      padding: 0 clamp(1.25rem, 3vw, 2.2rem) clamp(1.35rem, 3vw, 2.25rem);
+      max-width: 58rem;
+      padding: 0 clamp(0.95rem, 2.2vw, 1.55rem) clamp(1rem, 2.4vw, 1.55rem);
       color: rgba(255, 255, 255, 0.64);
-      font-size: clamp(0.92rem, 1.8vw, 1.08rem);
-      line-height: 1.55;
+      font-size: clamp(0.82rem, 1.45vw, 0.96rem);
+      line-height: 1.5;
     }
 
-    .faq-waitlist {
-      width: min(100%, 38rem);
-      margin: clamp(2rem, 5vw, 3.5rem) auto 0;
-      text-align: center;
-    }
-
-    .faq-waitlist h3 {
-      color: var(--color-surface);
-      font-size: clamp(1.9rem, 6vw, 3.4rem);
-      line-height: 0.92;
-    }
-
-    .faq-waitlist .hero-waitlist-form {
-      width: min(100%, 31rem);
-      margin-top: clamp(1.2rem, 3vw, 1.7rem);
+    .faq-answer a {
+      color: var(--color-primary);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
     }
 
     .site-footer {
-      padding-block: clamp(3.5rem, 8vw, 6rem);
+      padding-block: clamp(2.75rem, 6vw, 4.75rem);
       background: #1A1A1B;
     }
 
     .footer-shell {
+      display: block;
+    }
+
+    .footer-columns {
+      width: min(100%, 76rem);
+      margin-inline: auto;
+      display: grid;
+      gap: clamp(1.75rem, 5vw, 3rem);
+      align-items: center;
+    }
+
+    .footer-center {
+      order: -1;
       display: grid;
       justify-items: center;
-      gap: clamp(2rem, 5vw, 3rem);
+      gap: clamp(1.25rem, 3vw, 2rem);
     }
 
     .footer-heading {
       margin: 0;
       color: rgba(255, 255, 255, 0.68);
-      font-size: clamp(2.1rem, 4.8vw, 4rem);
+      font-size: clamp(1.45rem, 3vw, 2.35rem);
       line-height: 0.9;
       text-align: center;
     }
@@ -1394,12 +1398,6 @@
       font-family: var(--font-headline);
       font-size: 1.5rem;
       line-height: 0.85;
-    }
-
-    .footer-columns {
-      width: min(100%, 58rem);
-      display: grid;
-      gap: var(--space-8);
     }
 
     .footer-contact,
@@ -1621,13 +1619,16 @@
       }
 
       .footer-columns {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: start;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .footer-contact {
         justify-items: start;
         text-align: left;
+      }
+
+      .footer-center {
+        order: 0;
       }
 
       .footer-legal {
@@ -1912,20 +1913,9 @@
           <details class="faq-item">
             <summary>Как можно подключиться?</summary>
             <div class="faq-answer">
-              <p>Оставьте заявку на ранний доступ. Мы свяжемся с вами и проверим, подходит ли школа под критерии подключения.</p>
+              <p><a href="#top">Оставьте заявку на ранний доступ</a>. Мы свяжемся с вами и проверим, подходит ли школа под критерии подключения.</p>
             </div>
           </details>
-        </div>
-        <div class="faq-waitlist">
-          <h3>Оставьте Telegram для связи</h3>
-          <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы мы могли с вами связаться." novalidate>
-            <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
-            <input type="hidden" name="subject" value="Заявка после FAQ THE БОТ Platform">
-            <label class="sr-only" for="faq-telegram">Ваш Telegram</label>
-            <input id="faq-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
-            <button class="button" type="submit" data-submit-button>ПОПАСТЬ В WAITLIST</button>
-          </form>
-          <p class="hero-form-status" data-form-status aria-live="polite"></p>
         </div>
       </div>
     </section>
@@ -1933,13 +1923,6 @@
 
   <footer class="site-footer">
     <div class="container footer-shell">
-      <h2 class="footer-heading">
-        <span>ВАША ШКОЛА ГОТОВА</span>
-        <span>К НОВОМУ МАСШТАБУ</span>
-      </h2>
-      <a class="footer-logo-link" href="#top" aria-label="THE БОТ Platform" data-footer-logo>
-        <span class="footer-logo-fallback">THE БОТ Platform</span>
-      </a>
       <div class="footer-columns">
         <div class="footer-contact">
           <div class="footer-socials" aria-label="Социальные сети">
@@ -1961,6 +1944,15 @@
           </div>
           <a class="footer-email" href="mailto:hello@the-bot.ru">hello@the-bot.ru</a>
           <span>© 2026 THE БОТ Platform</span>
+        </div>
+        <div class="footer-center">
+          <h2 class="footer-heading">
+            <span>ВАША ШКОЛА ГОТОВА</span>
+            <span>К НОВОМУ МАСШТАБУ</span>
+          </h2>
+          <a class="footer-logo-link" href="#top" aria-label="THE БОТ Platform" data-footer-logo>
+            <span class="footer-logo-fallback">THE БОТ Platform</span>
+          </a>
         </div>
         <div class="footer-legal">
           <span>ИП Тимошкин Александр Игоревич</span>
