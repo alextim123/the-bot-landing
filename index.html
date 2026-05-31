@@ -4,24 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <title>THE БОТ Platform - операционная система для репетиторского центра</title>
-  <meta name="description" content="THE БОТ Platform объединяет расписание, занятия, пользователей, коммуникации, оплаты, выплаты и аналитику в одной системе для растущих репетиторских центров.">
+  <title>Платформа для управления репетиторским центром</title>
+  <meta name="description" content="Расписания, занятия, пользователи, коммуникации, финансы и аналитика для растущих онлайн-школ.">
   <link rel="canonical" href="https://the-bot.ru/">
   <link rel="icon" type="image/png" sizes="100x100" href="icon.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" sizes="100x60" href="icon-white.png" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" href="icon.png">
   <meta name="theme-color" content="#6155F5">
 
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109550435', 'ym');
+
+      ym(109550435, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <!-- /Yandex.Metrika counter -->
+
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="THE БОТ Platform">
-  <meta property="og:title" content="THE БОТ Platform - операционная система для репетиторского центра">
-  <meta property="og:description" content="Платформа для владельцев репетиторских центров, которые хотят управлять ростом, а не ежедневной операционкой.">
+  <meta property="og:title" content="Платформа для управления репетиторским центром">
+  <meta property="og:description" content="Расписания, занятия, пользователи, коммуникации, финансы и аналитика для растущих онлайн-школ.">
   <meta property="og:url" content="https://the-bot.ru/">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="THE БОТ Platform - операционная система для репетиторского центра">
-  <meta name="twitter:description" content="Расписание, занятия, пользователи, коммуникации, оплаты, выплаты и аналитика в одной системе для растущих школ.">
+  <meta name="twitter:title" content="Платформа для управления репетиторским центром">
+  <meta name="twitter:description" content="Расписания, занятия, пользователи, коммуникации, финансы и аналитика для растущих онлайн-школ.">
 
   <script type="application/ld+json">
   {
@@ -35,7 +48,7 @@
         "url": "https://the-bot.ru/",
         "email": "hello@the-bot.ru",
         "taxID": "132610005502",
-        "description": "Вертикальная SaaS-платформа для управления репетиторским центром.",
+        "description": "Расписания, занятия, пользователи, коммуникации, финансы и аналитика для растущих онлайн-школ.",
         "contactPoint": {
           "@type": "ContactPoint",
           "email": "hello@the-bot.ru",
@@ -326,14 +339,8 @@
       line-height: 1;
     }
 
-    .brand-logo-picture,
-    .footer-logo-picture {
-      display: block;
-      line-height: 0;
-    }
-
     .brand-logo {
-      width: clamp(3.6rem, 3.6vw, 4.25rem);
+      width: clamp(4.8rem, 5.6vw, 6rem);
       height: auto;
       display: block;
       flex: 0 0 auto;
@@ -1389,7 +1396,7 @@
     }
 
     .footer-logo-link {
-      width: clamp(4.6rem, 5.5vw, 5.8rem);
+      width: clamp(4.8rem, 6vw, 6.3rem);
       min-height: 3.1rem;
       display: grid;
       place-items: center;
@@ -1402,12 +1409,6 @@
       width: 100%;
       height: auto;
       display: block;
-    }
-
-    .footer-logo-fallback {
-      font-family: var(--font-headline);
-      font-size: 1.5rem;
-      line-height: 0.85;
     }
 
     .footer-contact,
@@ -1711,15 +1712,13 @@
   </style>
 </head>
 <body>
+  <noscript><div><img src="https://mc.yandex.ru/watch/109550435" style="position:absolute; left:-9999px;" alt=""></div></noscript>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
 
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="THE БОТ Platform">
-        <picture class="brand-logo-picture">
-          <source srcset="icon-white.png" media="(prefers-color-scheme: dark)">
-          <img class="brand-logo" src="icon.png" alt="THE БОТ Platform" width="100" height="100">
-        </picture>
+        <img class="brand-logo" src="logo.png" alt="THE БОТ Platform" width="249" height="169">
       </a>
     </div>
   </header>
@@ -1743,12 +1742,12 @@
             <span>На удобной и гибкой платформе,</span>
             <span>созданной специально для вас</span>
           </p>
-          <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в WaitList." novalidate>
+          <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в лист ожидания." novalidate>
             <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
-            <input type="hidden" name="subject" value="Новая заявка в WaitList THE БОТ Platform">
+            <input type="hidden" name="subject" value="Новая заявка в лист ожидания THE БОТ Platform">
             <label class="sr-only" for="hero-telegram">Ваш Telegram</label>
             <input id="hero-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
-            <button class="button" type="submit" data-submit-button>ПОПАСТЬ В WAITLIST</button>
+            <button class="button" type="submit" data-submit-button>ПОПАСТЬ В ЛИСТ ОЖИДАНИЯ</button>
           </form>
           <p class="hero-form-status" data-form-status aria-live="polite"></p>
           <div class="hero-social-proof" aria-label="Социальное доказательство">
@@ -1854,7 +1853,7 @@
               <input type="hidden" name="subject" value="Заявка в закрытое сообщество THE БОТ Platform">
               <label class="sr-only" for="community-telegram">Ваш Telegram</label>
               <input id="community-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
-              <button class="button" type="submit" data-submit-button>ПОПАСТЬ В WAITLIST</button>
+              <button class="button" type="submit" data-submit-button>ПОПАСТЬ В ЛИСТ ОЖИДАНИЯ</button>
             </form>
             <p class="hero-form-status" data-form-status aria-live="polite"></p>
           </section>
@@ -1964,10 +1963,7 @@
             <span>К НОВОМУ МАСШТАБУ</span>
           </h2>
           <a class="footer-logo-link" href="#top" aria-label="THE БОТ Platform">
-            <picture class="footer-logo-picture">
-              <source srcset="icon-white.png" media="(prefers-color-scheme: dark)">
-              <img class="footer-logo" src="icon.png" alt="THE БОТ Platform" width="100" height="100">
-            </picture>
+            <img class="footer-logo" src="logo.png" alt="THE БОТ Platform" width="249" height="169">
           </a>
         </div>
         <div class="footer-legal">
