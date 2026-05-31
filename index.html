@@ -635,6 +635,24 @@
       background: var(--color-primary-strong);
     }
 
+    .button.is-submitting,
+    .button.is-sent,
+    .button.is-submitting:hover,
+    .button.is-submitting:focus-visible,
+    .button.is-sent:hover,
+    .button.is-sent:focus-visible,
+    .hero-waitlist-form .button.is-submitting,
+    .hero-waitlist-form .button.is-sent,
+    .hero-waitlist-form .button.is-submitting:hover,
+    .hero-waitlist-form .button.is-submitting:focus-visible,
+    .hero-waitlist-form .button.is-sent:hover,
+    .hero-waitlist-form .button.is-sent:focus-visible {
+      color: var(--color-surface);
+      border-color: #03040E;
+      background: #03040E;
+      opacity: 1;
+    }
+
     .hero-form-status {
       min-height: 1rem;
       margin-top: var(--space-2);
@@ -642,7 +660,7 @@
       z-index: 3;
       color: var(--color-primary);
       font-size: 0.88rem;
-      font-weight: 800;
+      font-weight: 500;
     }
 
     .hero-form-status:empty {
@@ -793,6 +811,57 @@
       height: 1em;
       flex: 0 0 auto;
       object-fit: contain;
+    }
+
+    .problem-solution-section {
+      width: min(100%, 70rem);
+      margin: clamp(4.5rem, 8vw, 6.75rem) auto 0;
+      text-align: left;
+    }
+
+    .problem-solution-header {
+      max-width: 42rem;
+      margin: 0 auto clamp(2rem, 4.8vw, 3.5rem);
+      text-align: center;
+    }
+
+    .problem-solution-header h2 {
+      color: var(--color-surface);
+      font-size: clamp(2.1rem, 6.4vw, 4.2rem);
+      line-height: 0.9;
+    }
+
+    .problem-solution-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .problem-solution-card {
+      min-height: clamp(15rem, 42vw, 21rem);
+      padding: clamp(1.35rem, 3vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: var(--space-3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+        #1A1A1B;
+    }
+
+    .problem-solution-card h3 {
+      max-width: 28rem;
+      color: var(--color-surface);
+      font-size: clamp(1.45rem, 3.7vw, 2.1rem);
+      line-height: 0.92;
+    }
+
+    .problem-solution-card p {
+      max-width: 39rem;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 1.55;
     }
 
     .countdown {
@@ -1087,7 +1156,7 @@
       margin-top: var(--space-4);
       color: var(--color-primary);
       font-size: 0.9rem;
-      font-weight: 800;
+      font-weight: 500;
     }
 
     .form-status.is-error {
@@ -1249,6 +1318,14 @@
         margin-top: clamp(3.15rem, 5vw, 5rem);
       }
 
+      .problem-solution-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .problem-solution-card:last-child {
+        grid-column: 1 / -1;
+      }
+
       .button {
         width: auto;
       }
@@ -1332,6 +1409,22 @@
 
       .feature-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .problem-solution-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .problem-solution-card {
+        grid-column: span 2;
+      }
+
+      .problem-solution-card:nth-child(-n + 2) {
+        grid-column: span 3;
+      }
+
+      .problem-solution-card:last-child {
+        grid-column: span 2;
       }
 
       .symptom-grid {
@@ -1451,6 +1544,33 @@
               <img src="skyeng-white-base.png" alt="Skyeng" width="8503" height="1308" loading="lazy">
             </div>
           </div>
+          <section class="problem-solution-section" aria-labelledby="problem-solution-title">
+            <div class="problem-solution-header">
+              <h2 id="problem-solution-title">Problem and Solution</h2>
+            </div>
+            <div class="problem-solution-grid">
+              <article class="problem-solution-card">
+                <h3>Владелец не понимает, где теряются деньги</h3>
+                <p>Платформа связывает занятия, оплаты, списания, отмены, переносы и выплаты в одной системе. Владелец видит финансовую картину школы без ручных сверок и догадок.</p>
+              </article>
+              <article class="problem-solution-card">
+                <h3>Данные разбросаны по разным местам</h3>
+                <p>Платформа собирает ключевые данные школы в единый контур: занятия, учеников, преподавателей, отчёты, коммуникации и управленческую аналитику. Больше не нужно собирать картину из таблиц, чатов и памяти сотрудников.</p>
+              </article>
+              <article class="problem-solution-card">
+                <h3>Рост увеличивает операционную нагрузку</h3>
+                <p>Платформа переводит повторяющиеся процессы в управляемые сценарии: бронирования, переносы, отмены, напоминания, отчёты и выплаты перестают требовать постоянного ручного контроля.</p>
+              </article>
+              <article class="problem-solution-card">
+                <h3>Проблемы становятся видны слишком поздно</h3>
+                <p>Платформа фиксирует события по занятиям, посещаемости, отчётам, NPS и регулярности. Владелец раньше видит слабые места и может реагировать до того, как проблема превращается в уход ученика.</p>
+              </article>
+              <article class="problem-solution-card">
+                <h3>Исполнение регламентов не контролируется</h3>
+                <p>Платформа превращает правила школы в настройки системы. Отмены, переносы, отчёты, списания, выплаты и права доступа работают по заданным регламентам, а не по устным договорённостям.</p>
+              </article>
+            </div>
+          </section>
         </div>
 
       </div>
@@ -1842,6 +1962,7 @@
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
           status.classList.remove("is-error");
+          submitButton.classList.remove("is-sent", "is-submitting");
 
           if (!form.checkValidity()) {
             status.textContent = validationMessage;
@@ -1853,6 +1974,7 @@
           var data = new FormData(form);
 
           submitButton.disabled = true;
+          submitButton.classList.add("is-submitting");
           submitButton.textContent = "Отправляем...";
           status.textContent = "";
 
@@ -1877,11 +1999,14 @@
             }
 
             status.textContent = "Заявка отправлена. Мы свяжемся с вами в Telegram.";
+            submitButton.classList.add("is-sent");
             form.reset();
           } catch (error) {
             status.textContent = error.message || "Не удалось отправить заявку. Попробуйте ещё раз или напишите на hello@the-bot.ru.";
             status.classList.add("is-error");
+            submitButton.classList.remove("is-sent");
           } finally {
+            submitButton.classList.remove("is-submitting");
             submitButton.disabled = false;
             submitButton.textContent = defaultLabel;
           }
