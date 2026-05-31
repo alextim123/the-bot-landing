@@ -7,9 +7,10 @@
   <title>THE БОТ Platform - операционная система для репетиторского центра</title>
   <meta name="description" content="THE БОТ Platform объединяет расписание, занятия, пользователей, коммуникации, оплаты, выплаты и аналитику в одной системе для растущих репетиторских центров.">
   <link rel="canonical" href="https://the-bot.ru/">
-  <link rel="icon" type="image/png" sizes="100x100" href="icon.png">
+  <link rel="icon" type="image/png" sizes="100x100" href="icon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="100x60" href="icon-white.png" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" href="icon.png">
-  <meta name="theme-color" content="#8C00FF">
+  <meta name="theme-color" content="#6155F5">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
@@ -170,10 +171,10 @@
     }
 
     :root {
-      --color-primary: #8C00FF;
-      --color-primary-rgb: 140, 0, 255;
-      --color-primary-strong: #7200D6;
-      --color-primary-soft: #F2E3FF;
+      --color-primary: #6155F5;
+      --color-primary-rgb: 97, 85, 245;
+      --color-primary-strong: #4F46E5;
+      --color-primary-soft: #ECEBFF;
       --color-secondary: #2C2C2C2E;
       --color-tertiary: #1C1C1C1E;
       --color-neutral: #0F0F0F10;
@@ -325,9 +326,16 @@
       line-height: 1;
     }
 
+    .brand-logo-picture,
+    .footer-logo-picture {
+      display: block;
+      line-height: 0;
+    }
+
     .brand-logo {
       width: clamp(3.6rem, 3.6vw, 4.25rem);
       height: auto;
+      display: block;
       flex: 0 0 auto;
       border-radius: 0;
     }
@@ -634,7 +642,7 @@
     }
 
     .hero-waitlist-form input:focus {
-      box-shadow: inset 0 0 0 2px rgba(140, 0, 255, 0.42);
+      box-shadow: inset 0 0 0 2px rgba(var(--color-primary-rgb), 0.42);
     }
 
     .hero-waitlist-form .button {
@@ -926,7 +934,7 @@
         radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.22), transparent 34%),
         linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
       text-align: center;
-      box-shadow: 0 2.5rem 6rem rgba(140, 0, 255, 0.3);
+      box-shadow: 0 2.5rem 6rem rgba(var(--color-primary-rgb), 0.3);
     }
 
     .community-cta h2 {
@@ -1241,7 +1249,7 @@
     .field input:focus,
     .field textarea:focus,
     .field select:focus {
-      border-color: rgba(140, 0, 255, 0.9);
+      border-color: rgba(var(--color-primary-rgb), 0.9);
       background: rgba(255, 255, 255, 0.1);
     }
 
@@ -1708,7 +1716,10 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="THE БОТ Platform">
-        <img class="brand-logo" src="data:image/png;base64,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" alt="THE БОТ Platform" width="249" height="169">
+        <picture class="brand-logo-picture">
+          <source srcset="icon-white.png" media="(prefers-color-scheme: dark)">
+          <img class="brand-logo" src="icon.png" alt="THE БОТ Platform" width="100" height="100">
+        </picture>
       </a>
     </div>
   </header>
@@ -1952,8 +1963,11 @@
             <span>ВАША ШКОЛА ГОТОВА</span>
             <span>К НОВОМУ МАСШТАБУ</span>
           </h2>
-          <a class="footer-logo-link" href="#top" aria-label="THE БОТ Platform" data-footer-logo>
-            <span class="footer-logo-fallback">THE БОТ Platform</span>
+          <a class="footer-logo-link" href="#top" aria-label="THE БОТ Platform">
+            <picture class="footer-logo-picture">
+              <source srcset="icon-white.png" media="(prefers-color-scheme: dark)">
+              <img class="footer-logo" src="icon.png" alt="THE БОТ Platform" width="100" height="100">
+            </picture>
           </a>
         </div>
         <div class="footer-legal">
@@ -1984,16 +1998,6 @@
       var countdownMinutes = document.querySelector("[data-countdown-minutes]");
       var countdownSeconds = document.querySelector("[data-countdown-seconds]");
       var scrollVideos = document.querySelectorAll("[data-scroll-video]");
-      var headerLogo = document.querySelector(".brand-logo");
-      var footerLogoSlot = document.querySelector("[data-footer-logo]");
-
-      if (headerLogo && footerLogoSlot) {
-        var footerLogo = headerLogo.cloneNode(false);
-        footerLogo.className = "footer-logo";
-        footerLogo.removeAttribute("id");
-        footerLogoSlot.textContent = "";
-        footerLogoSlot.appendChild(footerLogo);
-      }
 
       function closeNav() {
         if (!toggle || !nav) return;
