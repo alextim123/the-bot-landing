@@ -636,17 +636,11 @@
     }
 
     .button.is-submitting,
-    .button.is-sent,
     .button.is-submitting:hover,
     .button.is-submitting:focus-visible,
-    .button.is-sent:hover,
-    .button.is-sent:focus-visible,
     .hero-waitlist-form .button.is-submitting,
-    .hero-waitlist-form .button.is-sent,
     .hero-waitlist-form .button.is-submitting:hover,
-    .hero-waitlist-form .button.is-submitting:focus-visible,
-    .hero-waitlist-form .button.is-sent:hover,
-    .hero-waitlist-form .button.is-sent:focus-visible {
+    .hero-waitlist-form .button.is-submitting:focus-visible {
       color: var(--color-surface);
       border-color: #03040E;
       background: #03040E;
@@ -836,32 +830,55 @@
       gap: var(--space-4);
     }
 
+    .problem-solution-header h2 > span {
+      display: block;
+    }
+
     .problem-solution-card {
-      min-height: clamp(15rem, 42vw, 21rem);
-      padding: clamp(1.35rem, 3vw, 2rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: var(--space-3);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      aspect-ratio: 1 / 1;
+      min-height: 0;
+      padding: clamp(1.25rem, 2.6vw, 1.65rem);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto auto;
+      gap: clamp(0.65rem, 1.4vw, 0.95rem);
       border-radius: var(--radius-md);
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
         #1A1A1B;
     }
 
-    .problem-solution-card h3 {
-      max-width: 28rem;
+    .problem-card-number {
       color: var(--color-surface);
-      font-size: clamp(1.45rem, 3.7vw, 2.1rem);
-      line-height: 0.92;
+      font-family: var(--font-headline);
+      font-size: clamp(1.65rem, 4vw, 2.35rem);
+      line-height: 0.9;
+    }
+
+    .problem-card-visual {
+      min-height: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .problem-card-visual img {
+      width: min(70%, 12rem);
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .problem-solution-card h3 {
+      max-width: 16rem;
+      color: var(--color-surface);
+      font-size: clamp(1.2rem, 2.7vw, 1.55rem);
+      line-height: 0.94;
     }
 
     .problem-solution-card p {
-      max-width: 39rem;
+      max-width: 19rem;
       color: rgba(255, 255, 255, 0.58);
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      line-height: 1.55;
+      font-size: clamp(0.76rem, 1.45vw, 0.9rem);
+      line-height: 1.35;
     }
 
     .countdown {
@@ -1319,11 +1336,7 @@
       }
 
       .problem-solution-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .problem-solution-card:last-child {
-        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .button {
@@ -1412,19 +1425,7 @@
       }
 
       .problem-solution-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-      }
-
-      .problem-solution-card {
-        grid-column: span 2;
-      }
-
-      .problem-solution-card:nth-child(-n + 2) {
-        grid-column: span 3;
-      }
-
-      .problem-solution-card:last-child {
-        grid-column: span 2;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .symptom-grid {
@@ -1475,8 +1476,7 @@
             <span><span class="hero-title-accent">БЕЗ ХАОСА</span> В ОПЕРАЦИОНКЕ</span>
           </h1>
           <p class="hero-kicker">
-            <span>Из ручного управления в прозрачную систему, чтобы</span>
-            <span>вы занимались любимым делом – масштабированием.</span>
+            <span>На удобной и гибкой платформе, созданной специально под вас</span>
           </p>
           <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в WaitList." novalidate>
             <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
@@ -1546,28 +1546,35 @@
           </div>
           <section class="problem-solution-section" aria-labelledby="problem-solution-title">
             <div class="problem-solution-header">
-              <h2 id="problem-solution-title">Problem and Solution</h2>
+              <h2 id="problem-solution-title">
+                <span>ИЗ РУЧНОГО УПРАВЛЕНИЯ</span>
+                <span>В ПРОЗРАЧНУЮ СИСТЕМУ</span>
+              </h2>
             </div>
             <div class="problem-solution-grid">
               <article class="problem-solution-card">
-                <h3>Владелец не понимает, где теряются деньги</h3>
-                <p>Платформа связывает занятия, оплаты, списания, отмены, переносы и выплаты в одной системе. Владелец видит финансовую картину школы без ручных сверок и догадок.</p>
+                <span class="problem-card-number">01</span>
+                <div class="problem-card-visual" aria-hidden="true">
+                  <img src="problem-spreadsheets.png" alt="" width="1254" height="1254" loading="lazy">
+                </div>
+                <h3>ИЗБАВЬТЕСЬ ОТ ТАБЛИЦ</h3>
+                <p>Соберите расписание, занятия, учеников, преподавателей и все данные школы в одном месте. Больше не нужно бегать по таблицам, чатам и календарям.</p>
               </article>
               <article class="problem-solution-card">
-                <h3>Данные разбросаны по разным местам</h3>
-                <p>Платформа собирает ключевые данные школы в единый контур: занятия, учеников, преподавателей, отчёты, коммуникации и управленческую аналитику. Больше не нужно собирать картину из таблиц, чатов и памяти сотрудников.</p>
+                <span class="problem-card-number">02</span>
+                <div class="problem-card-visual" aria-hidden="true">
+                  <img src="problem-student-risk.png" alt="" width="1254" height="1254" loading="lazy">
+                </div>
+                <h3>КОНТРОЛЛИРУЙТЕ УХОД</h3>
+                <p>Ученики редко уходят внезапно: сначала появляются пропуски, отмены и падение NPS. Платформа помогает заметить эти сигналы раньше и вовремя вмешаться.</p>
               </article>
               <article class="problem-solution-card">
-                <h3>Рост увеличивает операционную нагрузку</h3>
-                <p>Платформа переводит повторяющиеся процессы в управляемые сценарии: бронирования, переносы, отмены, напоминания, отчёты и выплаты перестают требовать постоянного ручного контроля.</p>
-              </article>
-              <article class="problem-solution-card">
-                <h3>Проблемы становятся видны слишком поздно</h3>
-                <p>Платформа фиксирует события по занятиям, посещаемости, отчётам, NPS и регулярности. Владелец раньше видит слабые места и может реагировать до того, как проблема превращается в уход ученика.</p>
-              </article>
-              <article class="problem-solution-card">
-                <h3>Исполнение регламентов не контролируется</h3>
-                <p>Платформа превращает правила школы в настройки системы. Отмены, переносы, отчёты, списания, выплаты и права доступа работают по заданным регламентам, а не по устным договорённостям.</p>
+                <span class="problem-card-number">03</span>
+                <div class="problem-card-visual" aria-hidden="true">
+                  <img src="problem-rules.png" alt="" width="1254" height="1254" loading="lazy">
+                </div>
+                <h3>СОЗДАЙТЕ РЕГЛАМЕНТЫ</h3>
+                <p>Превратите устные договорённости в систему, которую невозможно обмануть: правила фиксируются в платформе, а нарушения сразу становятся видны.</p>
               </article>
             </div>
           </section>
@@ -1962,7 +1969,7 @@
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
           status.classList.remove("is-error");
-          submitButton.classList.remove("is-sent", "is-submitting");
+          submitButton.classList.remove("is-submitting");
 
           if (!form.checkValidity()) {
             status.textContent = validationMessage;
@@ -1999,12 +2006,10 @@
             }
 
             status.textContent = "Заявка отправлена. Мы свяжемся с вами в Telegram.";
-            submitButton.classList.add("is-sent");
             form.reset();
           } catch (error) {
             status.textContent = error.message || "Не удалось отправить заявку. Попробуйте ещё раз или напишите на hello@the-bot.ru.";
             status.classList.add("is-error");
-            submitButton.classList.remove("is-sent");
           } finally {
             submitButton.classList.remove("is-submitting");
             submitButton.disabled = false;
