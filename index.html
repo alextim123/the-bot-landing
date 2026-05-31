@@ -153,6 +153,7 @@
 
     :root {
       --color-primary: #8C00FF;
+      --color-primary-rgb: 140, 0, 255;
       --color-primary-strong: #7200D6;
       --color-primary-soft: #F2E3FF;
       --color-secondary: #2C2C2C2E;
@@ -539,6 +540,8 @@
 
     .hero-social-proof {
       margin-top: clamp(1rem, 2.2vw, 1.6rem);
+      position: relative;
+      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -578,6 +581,8 @@
     .hero-waitlist-form {
       width: min(100%, 25.5rem);
       margin: clamp(1.75rem, 3.2vw, 2.35rem) auto 0;
+      position: relative;
+      z-index: 3;
       padding: 0;
       display: grid;
       gap: var(--space-2);
@@ -626,6 +631,8 @@
     .hero-form-status {
       min-height: 1rem;
       margin-top: var(--space-2);
+      position: relative;
+      z-index: 3;
       color: var(--color-primary);
       font-size: 0.88rem;
       font-weight: 800;
@@ -657,9 +664,9 @@
       height: 92%;
       transform: translateX(-50%);
       background:
-        radial-gradient(ellipse 32% 78% at 15% 76%, rgba(49, 94, 248, 1) 0%, rgba(49, 94, 248, 0.72) 28%, rgba(49, 94, 248, 0.28) 52%, rgba(49, 94, 248, 0) 76%),
-        radial-gradient(ellipse 32% 78% at 85% 76%, rgba(140, 0, 255, 0.94) 0%, rgba(77, 112, 255, 0.7) 34%, rgba(77, 112, 255, 0.24) 56%, rgba(140, 0, 255, 0) 78%),
-        radial-gradient(ellipse 54% 32% at 50% 78%, rgba(60, 111, 255, 0.34) 0%, rgba(60, 111, 255, 0.14) 44%, rgba(60, 111, 255, 0) 74%);
+        radial-gradient(ellipse 32% 78% at 15% 76%, rgba(var(--color-primary-rgb), 1) 0%, rgba(var(--color-primary-rgb), 0.72) 28%, rgba(var(--color-primary-rgb), 0.28) 52%, rgba(var(--color-primary-rgb), 0) 76%),
+        radial-gradient(ellipse 32% 78% at 85% 76%, rgba(var(--color-primary-rgb), 0.98) 0%, rgba(var(--color-primary-rgb), 0.68) 34%, rgba(var(--color-primary-rgb), 0.24) 56%, rgba(var(--color-primary-rgb), 0) 78%),
+        radial-gradient(ellipse 54% 32% at 50% 78%, rgba(var(--color-primary-rgb), 0.38) 0%, rgba(var(--color-primary-rgb), 0.16) 44%, rgba(var(--color-primary-rgb), 0) 74%);
       filter: blur(34px) saturate(1.12);
       opacity: 1;
       pointer-events: none;
@@ -1432,7 +1439,7 @@
               </button>
             </div>
             <div class="project-partner" aria-label="Партнер проекта">
-              <span>Партнер проекта – основатель</span>
+              <span>Сделано с любовью к образованию вместе с основателем</span>
               <img src="skyeng-white-base.png" alt="Skyeng" width="8503" height="1308" loading="lazy">
             </div>
           </div>
