@@ -896,6 +896,52 @@
       line-height: 1.32;
     }
 
+    .community-cta {
+      width: min(100%, 60rem);
+      margin: clamp(2.75rem, 6vw, 4.5rem) auto 0;
+      padding: clamp(1.75rem, 6vw, 4rem) clamp(1.1rem, 5vw, 4rem);
+      position: relative;
+      z-index: 3;
+      overflow: hidden;
+      border-radius: clamp(1.35rem, 4vw, 2.5rem);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.22), transparent 34%),
+        linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
+      text-align: center;
+      box-shadow: 0 2.5rem 6rem rgba(140, 0, 255, 0.3);
+    }
+
+    .community-cta h2 {
+      width: min(100%, 47rem);
+      margin: 0 auto;
+      color: var(--color-surface);
+      font-size: clamp(1.9rem, 6vw, 4rem);
+      line-height: 0.92;
+    }
+
+    .community-cta .hero-waitlist-form {
+      width: min(100%, 31rem);
+      margin-top: clamp(1.4rem, 3.2vw, 2rem);
+    }
+
+    .community-cta .hero-waitlist-form .button {
+      color: var(--color-surface);
+      background: #03040E;
+    }
+
+    .community-cta .hero-waitlist-form .button:hover,
+    .community-cta .hero-waitlist-form .button:focus-visible {
+      background: #111114;
+    }
+
+    .community-cta .hero-form-status {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .community-cta .hero-form-status.is-error {
+      color: #FFE0DD;
+    }
+
     .countdown {
       width: min(100%, 46rem);
       padding: var(--space-2);
@@ -1656,6 +1702,17 @@
                 <p>Превратите устные договорённости в систему, которую невозможно обмануть: правила фиксируются в платформе, а нарушения сразу становятся видны.</p>
               </article>
             </div>
+          </section>
+          <section class="community-cta" aria-labelledby="community-cta-title">
+            <h2 id="community-cta-title">Присоединяйся сейчас и попади в закрытое сообщество основателей онлайн-школ</h2>
+            <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в закрытое сообщество." novalidate>
+              <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
+              <input type="hidden" name="subject" value="Заявка в закрытое сообщество THE БОТ Platform">
+              <label class="sr-only" for="community-telegram">Ваш Telegram</label>
+              <input id="community-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
+              <button class="button" type="submit" data-submit-button>ПОПАСТЬ В WAITLIST</button>
+            </form>
+            <p class="hero-form-status" data-form-status aria-live="polite"></p>
           </section>
         </div>
 
