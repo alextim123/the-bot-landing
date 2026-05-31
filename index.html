@@ -649,11 +649,13 @@
 
     .preview-device {
       width: 100%;
+      aspect-ratio: 16 / 9;
       padding: 0.42rem;
       overflow: hidden;
       border: 1px solid rgba(0, 0, 0, 0.88);
       border-radius: 1.3rem;
-      background: #0B0B0F;
+      background:
+        #0B0B0F url("hero-screencast-poster.png") center / cover no-repeat;
       box-shadow:
         0 34px 90px rgba(0, 0, 0, 0.42),
         0 0 54px rgba(140, 0, 255, 0.22);
@@ -661,6 +663,7 @@
 
     .preview-video {
       width: 100%;
+      height: 100%;
       aspect-ratio: 16 / 9;
       display: block;
       overflow: hidden;
@@ -668,6 +671,12 @@
       border-radius: 0.95rem;
       background: #03040E;
       object-fit: cover;
+      opacity: 0;
+      transition: opacity 240ms ease;
+    }
+
+    .preview-video.is-ready {
+      opacity: 1;
     }
 
     .project-partner {
@@ -1339,8 +1348,9 @@
           </div>
           <div class="hero-product-preview" data-scroll-video-wrap>
             <div class="preview-device">
-              <video class="preview-video" data-scroll-video muted loop playsinline preload="metadata" tabindex="0" aria-label="Демонстрация интерфейса THE БОТ Platform">
-                <source src="Screencust.mp4" type="video/mp4">
+              <video class="preview-video" data-scroll-video muted loop playsinline preload="none" poster="hero-screencast-poster.png" tabindex="0" aria-label="Демонстрация интерфейса THE БОТ Platform">
+                <!-- TODO: когда появится pipeline генерации webm, добавить перед mp4: <source data-src="Screencust.webm" type="video/webm"> -->
+                <source data-src="Screencust.mp4" type="video/mp4">
               </video>
             </div>
             <div class="project-partner" aria-label="Партнер проекта">
@@ -1601,12 +1611,26 @@
 
       scrollVideos.forEach(function (video) {
         var preview = video.closest("[data-scroll-video-wrap]") || video;
+        var sources = video.querySelectorAll("source[data-src]");
         var hasStarted = false;
+        var hasSources = false;
         var isPausedByPointer = false;
         var lastScrollY = window.scrollY || window.pageYOffset || 0;
 
+        var loadVideoSources = function () {
+          if (hasSources) return;
+
+          sources.forEach(function (source) {
+            source.src = source.dataset.src;
+          });
+
+          hasSources = true;
+          video.load();
+        };
+
         var playVideo = function () {
           if (isPausedByPointer || document.hidden) return;
+          loadVideoSources();
           var playPromise = video.play();
 
           if (playPromise && typeof playPromise.catch === "function") {
@@ -1629,6 +1653,39 @@
 
           lastScrollY = currentScrollY;
         };
+
+        video.addEventListener("canplay", function () {
+          video.classList.add("is-ready");
+          if (hasStarted) playVideo();
+        });
+
+        video.addEventListener("error", function () {
+          video.classList.remove("is-ready");
+        });
+
+        var setupLazyVideoLoad = function () {
+          if ("IntersectionObserver" in window) {
+            var lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                loadVideoSources();
+                observer.unobserve(entry.target);
+              });
+            }, {
+              rootMargin: "320px 0px"
+            });
+
+            lazyVideoObserver.observe(preview);
+          } else {
+            loadVideoSources();
+          }
+        };
+
+        if (document.readyState === "complete") {
+          setupLazyVideoLoad();
+        } else {
+          window.addEventListener("load", setupLazyVideoLoad, { once: true });
+        }
 
         preview.addEventListener("pointerenter", function () {
           isPausedByPointer = true;
