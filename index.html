@@ -447,7 +447,7 @@
     }
 
     .hero-copy {
-      width: min(100%, 70rem);
+      width: min(100%, 88rem);
       margin-inline: auto;
       position: relative;
       isolation: isolate;
@@ -808,7 +808,7 @@
     }
 
     .problem-solution-section {
-      width: min(100%, 70rem);
+      width: min(100%, 86rem);
       margin: clamp(4.5rem, 8vw, 6.75rem) auto 0;
       text-align: left;
     }
@@ -912,11 +912,15 @@
     }
 
     .community-cta h2 {
-      width: min(100%, 47rem);
+      width: min(100%, 43rem);
       margin: 0 auto;
       color: var(--color-surface);
-      font-size: clamp(1.9rem, 6vw, 4rem);
-      line-height: 0.92;
+      font-size: clamp(1.45rem, 4vw, 2.75rem);
+      line-height: 0.94;
+    }
+
+    .community-cta h2 > span {
+      display: block;
     }
 
     .community-cta .hero-waitlist-form {
@@ -1523,7 +1527,7 @@
       }
     }
 
-    @media (min-width: 72rem) {
+    @media (min-width: 80rem) {
       .problem-solution-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -1535,29 +1539,30 @@
 
       .problem-solution-card {
         aspect-ratio: 1 / 1;
-        padding: clamp(1.05rem, 1.6vw, 1.45rem);
-        grid-template-rows: minmax(7rem, 0.9fr) auto minmax(2.85rem, auto);
-        row-gap: clamp(0.32rem, 0.72vw, 0.5rem);
+        padding: clamp(1.15rem, 1.55vw, 1.45rem);
+        grid-template-rows: minmax(12rem, 1fr) auto minmax(4.8rem, auto);
+        row-gap: clamp(0.45rem, 0.86vw, 0.7rem);
         column-gap: clamp(0.6rem, 1vw, 0.9rem);
       }
 
       .problem-card-visual {
         min-height: 0;
-        transform: translateY(-1rem);
+        transform: translateY(-1.45rem);
       }
 
       .problem-card-visual img {
-        max-width: 78%;
-        max-height: clamp(7.2rem, 10vw, 8.7rem);
+        max-width: 112%;
+        max-height: clamp(12.5rem, 14.5vw, 15.5rem);
       }
 
       .problem-solution-card h3 {
-        font-size: clamp(1.02rem, 1.62vw, 1.28rem);
+        font-size: clamp(1.75rem, 2.35vw, 2.15rem);
+        line-height: 0.9;
       }
 
       .problem-solution-card p {
-        font-size: clamp(0.58rem, 0.72vw, 0.66rem);
-        line-height: 1.15;
+        font-size: clamp(0.8rem, 1vw, 0.92rem);
+        line-height: 1.22;
       }
     }
 
@@ -1704,7 +1709,11 @@
             </div>
           </section>
           <section class="community-cta" aria-labelledby="community-cta-title">
-            <h2 id="community-cta-title">Присоединяйся сейчас и попади в закрытое сообщество основателей онлайн-школ</h2>
+            <h2 id="community-cta-title">
+              <span>Присоединяйся сейчас и попади</span>
+              <span>в закрытое сообщество</span>
+              <span>основателей онлайн-школ</span>
+            </h2>
             <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в закрытое сообщество." novalidate>
               <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
               <input type="hidden" name="subject" value="Заявка в закрытое сообщество THE БОТ Platform">
