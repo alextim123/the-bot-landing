@@ -651,20 +651,32 @@
       content: "";
       position: absolute;
       left: 50%;
-      top: -22%;
+      top: -46%;
       z-index: 0;
-      width: min(172%, 112rem);
-      height: 54%;
+      width: min(208%, 132rem);
+      height: 92%;
       transform: translateX(-50%);
       background:
-        radial-gradient(ellipse 34% 80% at 14% 80%, rgba(49, 94, 248, 0.96) 0%, rgba(49, 94, 248, 0.7) 28%, rgba(49, 94, 248, 0.22) 54%, rgba(49, 94, 248, 0) 76%),
-        radial-gradient(ellipse 34% 80% at 86% 80%, rgba(140, 0, 255, 0.88) 0%, rgba(95, 107, 255, 0.6) 34%, rgba(95, 107, 255, 0.18) 58%, rgba(140, 0, 255, 0) 78%),
-        radial-gradient(ellipse 46% 48% at 50% 78%, rgba(65, 115, 255, 0.44) 0%, rgba(65, 115, 255, 0.18) 42%, rgba(65, 115, 255, 0) 72%);
-      filter: blur(26px);
-      opacity: 0.95;
+        radial-gradient(ellipse 32% 78% at 15% 76%, rgba(49, 94, 248, 1) 0%, rgba(49, 94, 248, 0.72) 28%, rgba(49, 94, 248, 0.28) 52%, rgba(49, 94, 248, 0) 76%),
+        radial-gradient(ellipse 32% 78% at 85% 76%, rgba(140, 0, 255, 0.94) 0%, rgba(77, 112, 255, 0.7) 34%, rgba(77, 112, 255, 0.24) 56%, rgba(140, 0, 255, 0) 78%),
+        radial-gradient(ellipse 54% 32% at 50% 78%, rgba(60, 111, 255, 0.34) 0%, rgba(60, 111, 255, 0.14) 44%, rgba(60, 111, 255, 0) 74%);
+      filter: blur(34px) saturate(1.12);
+      opacity: 1;
       pointer-events: none;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 58%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 58%, transparent 100%);
+    }
+
+    .hero-product-preview::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -35%;
+      z-index: 0;
+      width: min(112%, 72rem);
+      height: 58%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse 62% 52% at 50% 45%, rgba(3, 4, 14, 0.92) 0%, rgba(3, 4, 14, 0.72) 34%, rgba(3, 4, 14, 0.22) 58%, rgba(3, 4, 14, 0) 82%);
+      filter: blur(20px);
+      pointer-events: none;
     }
 
     .preview-device {
