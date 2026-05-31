@@ -651,20 +651,20 @@
       content: "";
       position: absolute;
       left: 50%;
-      top: -42%;
+      top: -22%;
       z-index: 0;
-      width: min(210%, 124rem);
-      height: 112%;
+      width: min(172%, 112rem);
+      height: 54%;
       transform: translateX(-50%);
-      border-radius: 0 0 999px 999px;
       background:
-        radial-gradient(ellipse at 50% 37%, rgba(3, 4, 14, 0.9) 0%, rgba(3, 4, 14, 0.62) 30%, rgba(3, 4, 14, 0) 56%),
-        radial-gradient(ellipse 32% 72% at 18% 74%, rgba(49, 94, 248, 0.95) 0%, rgba(49, 94, 248, 0.72) 30%, rgba(49, 94, 248, 0.22) 56%, rgba(49, 94, 248, 0) 78%),
-        radial-gradient(ellipse 32% 72% at 82% 74%, rgba(95, 107, 255, 0.92) 0%, rgba(140, 0, 255, 0.64) 34%, rgba(95, 107, 255, 0.22) 58%, rgba(140, 0, 255, 0) 80%),
-        radial-gradient(ellipse 52% 44% at 50% 82%, rgba(65, 115, 255, 0.48) 0%, rgba(65, 115, 255, 0.24) 42%, rgba(65, 115, 255, 0) 72%);
-      filter: blur(18px);
-      opacity: 1;
+        radial-gradient(ellipse 34% 80% at 14% 80%, rgba(49, 94, 248, 0.96) 0%, rgba(49, 94, 248, 0.7) 28%, rgba(49, 94, 248, 0.22) 54%, rgba(49, 94, 248, 0) 76%),
+        radial-gradient(ellipse 34% 80% at 86% 80%, rgba(140, 0, 255, 0.88) 0%, rgba(95, 107, 255, 0.6) 34%, rgba(95, 107, 255, 0.18) 58%, rgba(140, 0, 255, 0) 78%),
+        radial-gradient(ellipse 46% 48% at 50% 78%, rgba(65, 115, 255, 0.44) 0%, rgba(65, 115, 255, 0.18) 42%, rgba(65, 115, 255, 0) 72%);
+      filter: blur(26px);
+      opacity: 0.95;
       pointer-events: none;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 58%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 58%, transparent 100%);
     }
 
     .preview-device {
@@ -696,6 +696,54 @@
 
     .preview-video.is-ready {
       opacity: 1;
+    }
+
+    .preview-toggle {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      border: 0;
+      color: var(--color-surface);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .preview-toggle:focus-visible {
+      outline: none;
+    }
+
+    .preview-toggle-badge {
+      width: clamp(3.3rem, 8vw, 4.8rem);
+      height: clamp(3.3rem, 8vw, 4.8rem);
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(3, 4, 14, 0.58);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.34);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .preview-toggle.is-visible .preview-toggle-badge,
+    .preview-toggle[data-state="paused"] .preview-toggle-badge,
+    .preview-toggle:focus-visible .preview-toggle-badge {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .preview-toggle-icon {
+      width: 45%;
+      height: 45%;
+      display: none;
+      fill: currentColor;
+    }
+
+    .preview-toggle[data-state="playing"] .preview-toggle-icon-pause,
+    .preview-toggle[data-state="paused"] .preview-toggle-icon-play {
+      display: block;
     }
 
     .project-partner {
@@ -1356,10 +1404,20 @@
           </div>
           <div class="hero-product-preview" data-scroll-video-wrap>
             <div class="preview-device">
-              <video class="preview-video" data-scroll-video muted loop playsinline preload="none" poster="hero-screencast-poster.png" tabindex="0" aria-label="Демонстрация интерфейса THE БОТ Platform">
+              <video class="preview-video" data-scroll-video muted loop playsinline preload="none" poster="hero-screencast-poster.png" aria-label="Демонстрация интерфейса THE БОТ Platform">
                 <!-- TODO: когда появится pipeline генерации webm, добавить перед mp4: <source data-src="Screencust.webm" type="video/webm"> -->
                 <source data-src="Screencust.mp4" type="video/mp4">
               </video>
+              <button class="preview-toggle" type="button" data-video-toggle data-state="playing" aria-label="Поставить видео на паузу">
+                <span class="preview-toggle-badge" aria-hidden="true">
+                  <svg class="preview-toggle-icon preview-toggle-icon-play" viewBox="0 0 24 24" focusable="false">
+                    <path d="M8 5v14l11-7z"></path>
+                  </svg>
+                  <svg class="preview-toggle-icon preview-toggle-icon-pause" viewBox="0 0 24 24" focusable="false">
+                    <path d="M7 5h4v14H7zM13 5h4v14h-4z"></path>
+                  </svg>
+                </span>
+              </button>
             </div>
             <div class="project-partner" aria-label="Партнер проекта">
               <span>Партнер проекта – основатель</span>
@@ -1619,10 +1677,12 @@
 
       scrollVideos.forEach(function (video) {
         var preview = video.closest("[data-scroll-video-wrap]") || video;
+        var toggleButton = preview.querySelector("[data-video-toggle]");
         var sources = video.querySelectorAll("source[data-src]");
         var hasStarted = false;
         var hasSources = false;
-        var isPausedByPointer = false;
+        var isPausedByUser = false;
+        var toggleFeedbackTimer = 0;
         var lastScrollY = window.scrollY || window.pageYOffset || 0;
 
         var loadVideoSources = function () {
@@ -1636,8 +1696,23 @@
           video.load();
         };
 
+        var setToggleState = function (state, persist) {
+          if (!toggleButton) return;
+
+          toggleButton.dataset.state = state;
+          toggleButton.setAttribute("aria-label", state === "paused" ? "Продолжить видео" : "Поставить видео на паузу");
+          toggleButton.classList.add("is-visible");
+          window.clearTimeout(toggleFeedbackTimer);
+
+          if (!persist) {
+            toggleFeedbackTimer = window.setTimeout(function () {
+              toggleButton.classList.remove("is-visible");
+            }, 560);
+          }
+        };
+
         var playVideo = function () {
-          if (isPausedByPointer || document.hidden) return;
+          if (isPausedByUser || document.hidden) return;
           loadVideoSources();
           var playPromise = video.play();
 
@@ -1648,6 +1723,21 @@
 
         var pauseVideo = function () {
           video.pause();
+        };
+
+        var toggleVideo = function () {
+          hasStarted = true;
+          loadVideoSources();
+
+          if (isPausedByUser || video.paused) {
+            isPausedByUser = false;
+            setToggleState("playing", false);
+            playVideo();
+          } else {
+            isPausedByUser = true;
+            pauseVideo();
+            setToggleState("paused", true);
+          }
         };
 
         var handleScroll = function () {
@@ -1664,7 +1754,7 @@
 
         video.addEventListener("canplay", function () {
           video.classList.add("is-ready");
-          if (hasStarted) playVideo();
+          if (hasStarted && !isPausedByUser) playVideo();
         });
 
         video.addEventListener("error", function () {
@@ -1695,30 +1785,14 @@
           window.addEventListener("load", setupLazyVideoLoad, { once: true });
         }
 
-        preview.addEventListener("pointerenter", function () {
-          isPausedByPointer = true;
-          pauseVideo();
-        });
-
-        preview.addEventListener("pointerleave", function () {
-          isPausedByPointer = false;
-          if (hasStarted) playVideo();
-        });
-
-        video.addEventListener("focus", function () {
-          isPausedByPointer = true;
-          pauseVideo();
-        });
-
-        video.addEventListener("blur", function () {
-          isPausedByPointer = false;
-          if (hasStarted) playVideo();
-        });
+        if (toggleButton) {
+          toggleButton.addEventListener("click", toggleVideo);
+        }
 
         document.addEventListener("visibilitychange", function () {
           if (document.hidden) {
             pauseVideo();
-          } else if (hasStarted) {
+          } else if (hasStarted && !isPausedByUser) {
             playVideo();
           }
         });
