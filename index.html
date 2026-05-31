@@ -835,13 +835,13 @@
     }
 
     .problem-solution-card {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: auto;
       min-height: 0;
       padding: clamp(1.25rem, 2.6vw, 1.7rem);
       display: grid;
-      grid-template-rows: auto minmax(8.5rem, 0.9fr) auto minmax(4.2rem, auto);
-      gap: clamp(0.45rem, 1vw, 0.7rem);
-      border-radius: clamp(1.15rem, 2vw, 1.7rem);
+      grid-template-rows: auto auto auto auto;
+      gap: clamp(0.6rem, 2.4vw, 0.95rem);
+      border-radius: clamp(1.25rem, 6vw, 1.9rem);
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
         #1A1A1B;
@@ -855,34 +855,34 @@
     }
 
     .problem-card-visual {
-      min-height: 0;
+      min-height: clamp(11rem, 48vw, 18rem);
       align-self: start;
       display: grid;
       place-items: start center;
-      transform: translateY(-0.25rem);
+      transform: translateY(-0.2rem);
     }
 
     .problem-card-visual img {
       width: auto;
-      max-width: 72%;
-      max-height: 10.6rem;
+      max-width: min(88%, 18rem);
+      max-height: clamp(12rem, 52vw, 18rem);
       height: auto;
       display: block;
       object-fit: contain;
     }
 
     .problem-solution-card h3 {
-      max-width: 16rem;
+      max-width: 100%;
       color: var(--color-surface);
-      font-size: clamp(1.2rem, 2.7vw, 1.55rem);
+      font-size: clamp(1.35rem, 6vw, 2rem);
       line-height: 0.94;
     }
 
     .problem-solution-card p {
-      max-width: 19rem;
+      max-width: 100%;
       color: rgba(255, 255, 255, 0.58);
-      font-size: clamp(0.76rem, 1.45vw, 0.9rem);
-      line-height: 1.35;
+      font-size: clamp(0.78rem, 3.2vw, 0.9rem);
+      line-height: 1.32;
     }
 
     .countdown {
@@ -1343,6 +1343,32 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
+      .problem-solution-card {
+        aspect-ratio: 1 / 1;
+        padding: clamp(1.25rem, 2vw, 1.7rem);
+        grid-template-rows: auto minmax(7.8rem, 0.9fr) auto minmax(3.05rem, auto);
+        gap: clamp(0.38rem, 0.9vw, 0.58rem);
+      }
+
+      .problem-card-visual {
+        min-height: 0;
+        transform: translateY(-0.35rem);
+      }
+
+      .problem-card-visual img {
+        max-width: 74%;
+        max-height: clamp(7.4rem, 11vw, 9rem);
+      }
+
+      .problem-solution-card h3 {
+        font-size: clamp(1.1rem, 2vw, 1.42rem);
+      }
+
+      .problem-solution-card p {
+        font-size: clamp(0.66rem, 0.88vw, 0.74rem);
+        line-height: 1.22;
+      }
+
       .button {
         width: auto;
       }
@@ -1568,7 +1594,7 @@
               <article class="problem-solution-card">
                 <span class="problem-card-number">02</span>
                 <div class="problem-card-visual" aria-hidden="true">
-                  <img src="problem-student-risk.png" alt="" width="1024" height="1024" loading="lazy">
+                  <img src="problem-student-risk.png" alt="" width="1000" height="1000" loading="lazy">
                 </div>
                 <h3>КОНТРОЛЛИРУЙТЕ УХОД</h3>
                 <p>Ученики редко уходят внезапно: сначала появляются пропуски, отмены и падение NPS. Платформа помогает заметить эти сигналы раньше и вовремя вмешаться.</p>
