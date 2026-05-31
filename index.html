@@ -449,7 +449,14 @@
     .hero-copy {
       width: min(100%, 70rem);
       margin-inline: auto;
+      position: relative;
+      isolation: isolate;
       text-align: center;
+    }
+
+    .hero-copy > :not(.hero-product-preview) {
+      position: relative;
+      z-index: 2;
     }
 
     .site-hero h1 {
@@ -651,6 +658,7 @@
       width: min(100%, 58rem);
       margin: clamp(3.25rem, 5.8vw, 4.75rem) auto 0;
       position: relative;
+      z-index: 1;
       isolation: isolate;
     }
 
@@ -661,12 +669,12 @@
       top: -76%;
       z-index: 0;
       width: min(238%, 148rem);
-      height: 146%;
+      height: 126%;
       transform: translateX(-50%);
       background:
-        radial-gradient(ellipse 33% 94% at 14% 62%, rgba(var(--color-primary-rgb), 1) 0%, rgba(var(--color-primary-rgb), 0.74) 28%, rgba(var(--color-primary-rgb), 0.3) 54%, rgba(var(--color-primary-rgb), 0) 80%),
-        radial-gradient(ellipse 33% 94% at 86% 62%, rgba(var(--color-primary-rgb), 0.98) 0%, rgba(var(--color-primary-rgb), 0.7) 34%, rgba(var(--color-primary-rgb), 0.26) 58%, rgba(var(--color-primary-rgb), 0) 82%),
-        radial-gradient(ellipse 62% 54% at 50% 68%, rgba(var(--color-primary-rgb), 0.42) 0%, rgba(var(--color-primary-rgb), 0.18) 46%, rgba(var(--color-primary-rgb), 0) 78%);
+        radial-gradient(ellipse 33% 94% at 14% 70%, rgba(var(--color-primary-rgb), 1) 0%, rgba(var(--color-primary-rgb), 0.74) 28%, rgba(var(--color-primary-rgb), 0.3) 54%, rgba(var(--color-primary-rgb), 0) 80%),
+        radial-gradient(ellipse 33% 94% at 86% 70%, rgba(var(--color-primary-rgb), 0.98) 0%, rgba(var(--color-primary-rgb), 0.7) 34%, rgba(var(--color-primary-rgb), 0.26) 58%, rgba(var(--color-primary-rgb), 0) 82%),
+        radial-gradient(ellipse 62% 54% at 50% 74%, rgba(var(--color-primary-rgb), 0.42) 0%, rgba(var(--color-primary-rgb), 0.18) 46%, rgba(var(--color-primary-rgb), 0) 78%);
       filter: blur(40px) saturate(1.15);
       opacity: 1;
       pointer-events: none;
@@ -676,10 +684,10 @@
       content: "";
       position: absolute;
       left: 50%;
-      top: -62%;
+      top: -68%;
       z-index: 0;
       width: min(126%, 82rem);
-      height: 98%;
+      height: 108%;
       transform: translateX(-50%);
       background: radial-gradient(ellipse 62% 58% at 50% 42%, rgba(3, 4, 14, 0.92) 0%, rgba(3, 4, 14, 0.72) 32%, rgba(3, 4, 14, 0.2) 60%, rgba(3, 4, 14, 0) 84%);
       filter: blur(20px);
@@ -776,7 +784,7 @@
       gap: clamp(0.75rem, 2vw, 1.15rem);
       color: rgba(255, 255, 255, 0.58);
       font-size: clamp(0.82rem, 2.2vw, 0.98rem);
-      font-weight: 650;
+      font-weight: 500;
       line-height: 1.25;
     }
 
