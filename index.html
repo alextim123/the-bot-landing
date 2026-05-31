@@ -650,15 +650,13 @@
     .preview-device {
       width: 100%;
       aspect-ratio: 16 / 9;
-      padding: 0.42rem;
       overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.88);
-      border-radius: 1.3rem;
-      background:
-        #0B0B0F url("hero-screencast-poster.png") center / cover no-repeat;
+      background: url("hero-screencast-poster.png") center / cover no-repeat;
       box-shadow:
         0 34px 90px rgba(0, 0, 0, 0.42),
         0 0 54px rgba(140, 0, 255, 0.22);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0.62) 82%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0.62) 82%, transparent 100%);
     }
 
     .preview-video {
@@ -667,8 +665,8 @@
       aspect-ratio: 16 / 9;
       display: block;
       overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.88);
-      border-radius: 0.95rem;
+      border: 0;
+      border-radius: 0;
       background: #03040E;
       object-fit: cover;
       opacity: 0;
@@ -694,7 +692,7 @@
 
     .project-partner img {
       width: auto;
-      height: clamp(1.35rem, 3vw, 2rem);
+      height: 1em;
       flex: 0 0 auto;
       object-fit: contain;
     }
@@ -1151,19 +1149,6 @@
       .hero-product-preview {
         width: min(100%, 64rem);
         margin-top: clamp(3.15rem, 5vw, 5rem);
-      }
-
-      .preview-device {
-        padding: 0.55rem;
-        border-radius: 1.65rem;
-      }
-
-      .preview-video {
-        border-radius: 1.2rem;
-      }
-
-      .project-partner {
-        justify-content: flex-end;
       }
 
       .button {
