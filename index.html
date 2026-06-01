@@ -2129,9 +2129,7 @@
             <span>На удобной и гибкой платформе,</span>
             <span>созданной специально для вас</span>
           </p>
-          <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в лист ожидания." novalidate>
-            <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
-            <input type="hidden" name="subject" value="Новая заявка в лист ожидания THE БОТ Platform">
+          <form class="hero-waitlist-form" action="https://api.forms.yandex.net/v1/surveys/6a1c8d39505690382a9fa7c5/form" method="POST" data-access-form data-yandex-telegram-question="answer_short_text_9008979587645728" data-validation-message="Укажите Telegram, чтобы попасть в лист ожидания." novalidate>
             <label class="sr-only" for="hero-telegram">Ваш Telegram</label>
             <input id="hero-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
             <button class="button" type="submit" data-submit-button>ПОПАСТЬ В ЛИСТ ОЖИДАНИЯ</button>
@@ -2235,9 +2233,7 @@
               <span>в закрытое сообщество</span>
               <span>основателей онлайн-школ</span>
             </h2>
-            <form class="hero-waitlist-form" action="https://api.web3forms.com/submit" method="POST" data-access-form data-validation-message="Укажите Telegram, чтобы попасть в закрытое сообщество." novalidate>
-              <input type="hidden" name="access_key" value="c41d9703-34ea-4d5d-a848-3f91c9763e7e">
-              <input type="hidden" name="subject" value="Заявка в закрытое сообщество THE БОТ Platform">
+            <form class="hero-waitlist-form" action="https://api.forms.yandex.net/v1/surveys/6a1c8d39505690382a9fa7c5/form" method="POST" data-access-form data-yandex-telegram-question="answer_short_text_9008979587645728" data-validation-message="Укажите Telegram, чтобы попасть в закрытое сообщество." novalidate>
               <label class="sr-only" for="community-telegram">Ваш Telegram</label>
               <input id="community-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
               <button class="button" type="submit" data-submit-button>ПОПАСТЬ В ЛИСТ ОЖИДАНИЯ</button>
@@ -2736,6 +2732,8 @@
       forms.forEach(function (form) {
         var status = form.querySelector("[data-form-status]");
         var submitButton = form.querySelector("[data-submit-button]");
+        var telegramInput = form.querySelector("[name='telegram']");
+        var yandexTelegramQuestion = form.getAttribute("data-yandex-telegram-question");
         var validationMessage = form.getAttribute("data-validation-message") || "Выберите количество активных учеников и укажите Telegram.";
         var defaultLabel = submitButton ? submitButton.textContent : "";
 
@@ -2743,7 +2741,7 @@
           status = form.nextElementSibling;
         }
 
-        if (!status || !submitButton) return;
+        if (!status || !submitButton || !telegramInput || !yandexTelegramQuestion) return;
 
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
@@ -2757,7 +2755,8 @@
             return;
           }
 
-          var data = new FormData(form);
+          var payload = {};
+          payload[yandexTelegramQuestion] = telegramInput.value.trim();
 
           submitButton.disabled = true;
           submitButton.classList.add("is-submitting");
@@ -2767,9 +2766,10 @@
           try {
             var response = await fetch(form.action, {
               method: form.method,
-              body: data,
+              body: JSON.stringify(payload),
               headers: {
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Content-Type": "application/json"
               }
             });
             var result = {};
@@ -2780,7 +2780,7 @@
               result = {};
             }
 
-            if (!response.ok || result.success === false) {
+            if (!response.ok || result.success === false || result.error) {
               throw new Error(result.message || "Не удалось отправить заявку.");
             }
 
