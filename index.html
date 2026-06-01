@@ -245,7 +245,24 @@
     body {
       margin: 0;
       color: var(--color-surface);
-      background: #03040E;
+      --site-grid-gap: 5em;
+      --site-grid-line: 1px;
+      --site-grid-color: rgba(255, 255, 255, 0.13);
+      background-color: #03040E;
+      background-image:
+        linear-gradient(
+          -90deg,
+          transparent calc(var(--site-grid-gap) - var(--site-grid-line)),
+          var(--site-grid-color) calc(var(--site-grid-gap) - var(--site-grid-line) + 1px),
+          var(--site-grid-color) var(--site-grid-gap)
+        ),
+        linear-gradient(
+          0deg,
+          transparent calc(var(--site-grid-gap) - var(--site-grid-line)),
+          var(--site-grid-color) calc(var(--site-grid-gap) - var(--site-grid-line) + 1px),
+          var(--site-grid-color) var(--site-grid-gap)
+        );
+      background-size: var(--site-grid-gap) var(--site-grid-gap);
       font-family: var(--font-body);
       font-size: 1rem;
       line-height: 1.55;
@@ -392,7 +409,7 @@
     .section {
       padding-block: var(--space-9);
       color: var(--color-surface);
-      background: #03040E;
+      background: transparent;
     }
 
     .section.compact {
@@ -467,37 +484,10 @@
     .site-hero {
       position: relative;
       isolation: isolate;
-      overflow: hidden;
       min-height: 100svh;
       padding-block: calc(var(--header-height) + var(--space-7)) 0;
       color: var(--color-surface);
-      background: #03040E;
-    }
-
-    .site-hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      --hero-grid-gap: 5em;
-      --hero-grid-line: 1px;
-      --hero-grid-color: rgba(255, 255, 255, 0.16);
-      background-image:
-        linear-gradient(
-          -90deg,
-          transparent calc(var(--hero-grid-gap) - var(--hero-grid-line)),
-          var(--hero-grid-color) calc(var(--hero-grid-gap) - var(--hero-grid-line) + 1px),
-          var(--hero-grid-color) var(--hero-grid-gap)
-        ),
-        linear-gradient(
-          0deg,
-          transparent calc(var(--hero-grid-gap) - var(--hero-grid-line)),
-          var(--hero-grid-color) calc(var(--hero-grid-gap) - var(--hero-grid-line) + 1px),
-          var(--hero-grid-color) var(--hero-grid-gap)
-        );
-      background-size: var(--hero-grid-gap) var(--hero-grid-gap);
-      opacity: 0.62;
-      pointer-events: none;
+      background: transparent;
     }
 
     .hero-stage {
@@ -705,10 +695,28 @@
       transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 180ms ease;
     }
 
+    .hero-waitlist-form::before {
+      content: "";
+      position: absolute;
+      inset: -0.32rem;
+      z-index: -1;
+      border-radius: 2.1rem;
+      border: 1px solid rgba(var(--color-primary-rgb), 0.24);
+      background: rgba(var(--color-primary-rgb), 0.08);
+      box-shadow: 0 0 22px rgba(var(--color-primary-rgb), 0.22);
+      opacity: 0;
+      transform: scale(0.985);
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
     .hero-waitlist-form:focus-within {
-      transform: translateY(-2px);
-      border-color: rgba(var(--color-primary-rgb), 0.6);
-      box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.15), 0 0 34px rgba(var(--color-primary-rgb), 0.24);
+      transform: translateY(-1px);
+    }
+
+    .hero-waitlist-form:focus-within::before {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .hero-waitlist-form input {
@@ -1438,8 +1446,8 @@
     }
 
     .faq-section {
-      padding-block: 0 clamp(3rem, 6vw, 5rem);
-      background: #03040E;
+      padding-block: clamp(2.75rem, 9vw, 4rem) clamp(3rem, 6vw, 5rem);
+      background: transparent;
     }
 
     .faq-header {
@@ -1822,6 +1830,18 @@
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.96);
         box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+      }
+
+      .hero-waitlist-form::before {
+        inset: -0.38rem;
+        border-radius: 999px;
+        border-color: rgba(var(--color-primary-rgb), 0.42);
+        background: rgba(var(--color-primary-rgb), 0.1);
+        box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.12), 0 0 34px rgba(var(--color-primary-rgb), 0.24);
+      }
+
+      .hero-waitlist-form:focus-within {
+        transform: translateY(-2px);
       }
 
       .hero-waitlist-form input {
