@@ -466,13 +466,43 @@
 
     .site-hero {
       position: relative;
+      isolation: isolate;
+      overflow: hidden;
       min-height: 100svh;
       padding-block: calc(var(--header-height) + var(--space-7)) 0;
       color: var(--color-surface);
       background: #03040E;
     }
 
+    .site-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      --hero-grid-gap: 5em;
+      --hero-grid-line: 1px;
+      --hero-grid-color: rgba(255, 255, 255, 0.16);
+      background-image:
+        linear-gradient(
+          -90deg,
+          transparent calc(var(--hero-grid-gap) - var(--hero-grid-line)),
+          var(--hero-grid-color) calc(var(--hero-grid-gap) - var(--hero-grid-line) + 1px),
+          var(--hero-grid-color) var(--hero-grid-gap)
+        ),
+        linear-gradient(
+          0deg,
+          transparent calc(var(--hero-grid-gap) - var(--hero-grid-line)),
+          var(--hero-grid-color) calc(var(--hero-grid-gap) - var(--hero-grid-line) + 1px),
+          var(--hero-grid-color) var(--hero-grid-gap)
+        );
+      background-size: var(--hero-grid-gap) var(--hero-grid-gap);
+      opacity: 0.62;
+      pointer-events: none;
+    }
+
     .hero-stage {
+      position: relative;
+      z-index: 1;
       min-height: calc(100svh - var(--header-height) - var(--space-9));
       display: flex;
       justify-items: center;
@@ -1720,13 +1750,21 @@
 
     @keyframes timerTick {
       0% {
-        opacity: 0.42;
-        transform: translateY(-0.22rem);
+        opacity: 0.62;
+        transform: scale(0.985);
+        filter: blur(0.2px);
+      }
+
+      45% {
+        opacity: 1;
+        transform: scale(1.018);
+        filter: blur(0);
       }
 
       100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
+        filter: blur(0);
       }
     }
 
