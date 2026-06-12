@@ -12,31 +12,6 @@
   <link rel="apple-touch-icon" href="icon.png">
   <meta name="theme-color" content="#6155F5">
 
-  <script>
-    (function () {
-      var releaseAt = Date.parse("2026-06-14T21:00:00.000Z");
-      var currentPath = window.location.pathname.replace(/\/+$/, "");
-
-      if (currentPath.endsWith("/release.html")) {
-        return;
-      }
-
-      function goToRelease() {
-        var releaseUrl = new URL("release.html", window.location.href);
-        releaseUrl.search = window.location.search;
-        releaseUrl.hash = window.location.hash;
-        window.location.replace(releaseUrl.href);
-      }
-
-      if (Date.now() >= releaseAt) {
-        goToRelease();
-        return;
-      }
-
-      window.setTimeout(goToRelease, releaseAt - Date.now());
-    }());
-  </script>
-
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
       (function(m,e,t,r,i,k,a){
@@ -69,10 +44,8 @@
         "@type": "Organization",
         "@id": "https://the-bot.ru/#organization",
         "name": "THE БОТ Platform",
-        "legalName": "ИП Тимошкин Александр Игоревич",
         "url": "https://the-bot.ru/",
         "email": "hello@the-bot.ru",
-        "taxID": "132610005502",
         "description": "Расписания, занятия, пользователи, коммуникации, финансы и аналитика для растущих онлайн-школ.",
         "contactPoint": {
           "@type": "ContactPoint",
@@ -1179,87 +1152,6 @@
       color: #FFE0DD;
     }
 
-    .countdown {
-      width: min(100%, 46rem);
-      padding: var(--space-2);
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: var(--space-2);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .countdown-item {
-      min-height: 4.9rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.25rem;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .countdown-value {
-      color: var(--color-surface);
-      font-size: clamp(1.35rem, 6vw, 2.1rem);
-      font-weight: 850;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .countdown-label {
-      color: rgba(255, 255, 255, 0.58);
-      font-size: 0.68rem;
-      font-weight: 850;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .countdown-compact {
-      width: auto;
-      margin: 0 0 clamp(2.25rem, 4.4vw, 3rem);
-      padding: 0;
-      display: block;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      animation: heroFadeUp 620ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
-    }
-
-    .countdown-time {
-      display: inline-flex;
-      align-items: baseline;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.62);
-      font-family: var(--font-label);
-      font-size: 1.06rem;
-      font-weight: 850;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .countdown-time span {
-      display: inline-block;
-    }
-
-    .countdown-time span.is-ticking {
-      animation: timerTick 320ms ease both;
-    }
-
-    .countdown-separator {
-      margin-inline: 0.16rem;
-      color: rgba(255, 255, 255, 0.48);
-    }
-
-    .countdown-caption {
-      margin-top: 0.18rem;
-      color: rgba(255, 255, 255, 0.34);
-      font-size: 0.82rem;
-      line-height: 1.2;
-    }
-
     .pain-section {
       background: var(--color-surface);
       border-block: 1px solid var(--color-line);
@@ -1720,6 +1612,28 @@
       outline: none;
     }
 
+    .footer-legal-links {
+      display: grid;
+      gap: 0.55rem;
+      justify-items: center;
+    }
+
+    .footer-legal-link {
+      display: block;
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 700;
+      line-height: 1.28;
+      text-decoration: underline;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .footer-legal-link:hover,
+    .footer-legal-link:focus-visible {
+      color: var(--color-primary);
+      outline: none;
+    }
+
     .motion-ready [data-reveal] {
       opacity: 0;
       transform: translate3d(0, 1.4rem, 0);
@@ -2045,6 +1959,16 @@
         text-align: right;
       }
 
+      .footer-legal-links {
+        width: min(100%, 24rem);
+        justify-items: stretch;
+      }
+
+      .footer-legal-link {
+        width: 100%;
+        text-align: right;
+      }
+
       .feature-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -2139,12 +2063,6 @@
     <section class="site-hero" id="top" aria-labelledby="hero-title">
       <div class="container hero-stage">
         <div class="hero-copy">
-          <div class="countdown countdown-compact" data-countdown aria-label="Таймер до 15 июня 2026 года, 00:00 по Москве">
-            <div class="countdown-time" aria-live="polite">
-              <span data-countdown-days>0Д</span><span class="countdown-separator">:</span><span data-countdown-hours>00Ч</span><span class="countdown-separator">:</span><span data-countdown-minutes>00М</span><span class="countdown-separator">:</span><span data-countdown-seconds>00С</span>
-            </div>
-            <p class="countdown-caption">До официального релиза</p>
-          </div>
           <h1 id="hero-title">
             <span class="hero-title-accent">МАСШТАБИРУЙТЕ</span>
             <span>РЕПЕТИТОРСКИЙ ЦЕНТР</span>
@@ -2159,7 +2077,7 @@
             <input type="hidden" name="subject" value="Новая заявка в лист ожидания THE БОТ Platform">
             <label class="sr-only" for="hero-telegram">Ваш Telegram</label>
             <input id="hero-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
-            <button class="button" type="submit" data-submit-button>ПОПАСТЬ В ЛИСТ ОЖИДАНИЯ</button>
+            <button class="button" type="submit" data-submit-button>Оставить заявку</button>
           </form>
           <p class="hero-form-status" data-form-status aria-live="polite"></p>
           <div class="hero-social-proof" aria-label="Социальное доказательство">
@@ -2265,7 +2183,7 @@
               <input type="hidden" name="subject" value="Заявка в закрытое сообщество THE БОТ Platform">
               <label class="sr-only" for="community-telegram">Ваш Telegram</label>
               <input id="community-telegram" name="telegram" type="text" inputmode="text" autocomplete="off" required placeholder="Ваш Telegram">
-              <button class="button" type="submit" data-submit-button>ПОПАСТЬ В ЛИСТ ОЖИДАНИЯ</button>
+              <button class="button" type="submit" data-submit-button>Оставить заявку</button>
             </form>
             <p class="hero-form-status" data-form-status aria-live="polite"></p>
           </section>
@@ -2379,9 +2297,11 @@
           </a>
         </div>
         <div class="footer-legal">
-          <span>ИП Тимошкин Александр Игоревич</span>
-          <span>ИНН: 132610005502</span>
-          <span>ОГРНИП: 325130000030542</span>
+          <div class="footer-legal-links" aria-label="Юридические документы">
+            <a class="footer-legal-link" href="contacts.html">Наши контакты</a>
+            <a class="footer-legal-link" href="terms.html">Пользовательское соглашение</a>
+            <a class="footer-legal-link" href="privacy.html">Согласие на обработку персональных данных</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2400,11 +2320,6 @@
       var nav = document.getElementById("site-nav");
       var navLinks = document.querySelectorAll(".site-nav a");
       var forms = document.querySelectorAll("[data-access-form]");
-      var countdown = document.querySelector("[data-countdown]");
-      var countdownDays = document.querySelector("[data-countdown-days]");
-      var countdownHours = document.querySelector("[data-countdown-hours]");
-      var countdownMinutes = document.querySelector("[data-countdown-minutes]");
-      var countdownSeconds = document.querySelector("[data-countdown-seconds]");
       var scrollVideos = document.querySelectorAll("[data-scroll-video]");
       var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -2597,40 +2512,6 @@
         window.addEventListener("keydown", function (event) {
           if (event.key === "Escape") closeNav();
         });
-      }
-
-      if (countdown && countdownDays && countdownHours && countdownMinutes && countdownSeconds) {
-        var targetDate = new Date("2026-06-14T21:00:00.000Z").getTime();
-        var pad = function (value) {
-          return String(value).padStart(2, "0");
-        };
-        var setCountdownPart = function (element, value) {
-          if (element.textContent === value) return;
-
-          element.textContent = value;
-
-          if (reduceMotion) return;
-
-          element.classList.remove("is-ticking");
-          element.offsetHeight;
-          element.classList.add("is-ticking");
-        };
-        var updateCountdown = function () {
-          var distance = Math.max(0, targetDate - Date.now());
-          var totalSeconds = Math.floor(distance / 1000);
-          var days = Math.floor(totalSeconds / 86400);
-          var hours = Math.floor((totalSeconds % 86400) / 3600);
-          var minutes = Math.floor((totalSeconds % 3600) / 60);
-          var seconds = totalSeconds % 60;
-
-          setCountdownPart(countdownDays, String(days) + "Д");
-          setCountdownPart(countdownHours, pad(hours) + "Ч");
-          setCountdownPart(countdownMinutes, pad(minutes) + "М");
-          setCountdownPart(countdownSeconds, pad(seconds) + "С");
-        };
-
-        updateCountdown();
-        window.setInterval(updateCountdown, 1000);
       }
 
       scrollVideos.forEach(function (video) {
