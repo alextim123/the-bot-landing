@@ -165,7 +165,8 @@ workspace or repository safety, privacy, or user-approval requirements.
   business data, or BOTAY.
 - Integrate through approved public, versioned contracts, links, or endpoints.
   Any shared authentication, database, or contract change starts in the
-  canonical `../the-bot/` repository.
+  independent canonical repository `alextim123/the-bot`. Do not infer its
+  location from the landing worktree's filesystem ancestry.
 - Do not add or silently migrate platform scaffolding, product modules, schemas,
   services, or business logic into this repository.
 
@@ -191,13 +192,18 @@ workspace or repository safety, privacy, or user-approval requirements.
 
 - Every new landing and every edit to an existing landing requires an exact user-approved Landing Brief or Delta Brief before implementation. A product feature merge, Product Facts synchronization, or product handoff does not authorize a landing change.
 - Work outside the approved brief or delta scope is forbidden. A landing strategist, copywriter, or developer may propose or implement only the assigned approved stage; none may approve positioning, copy, design, experiments, or publication for the user.
-- Shared non-code marketing context is expected in the umbrella `marketing-context/` source when it exists. Do not substitute research or experiment artifacts for production facts.
+- Shared non-code marketing context is the canonical THE БОТ ecosystem
+  `marketing-context/` source when it exists. Identify its repository and path
+  from exact task evidence; do not infer them from filesystem ancestry. Do not
+  substitute research or experiment artifacts for production facts.
 - Demand-test copy must reference an approved experiment record and preserve its internal claim status and evidence. The status need not appear publicly unless the approved brief requires it.
 - Before publication, require a local or branch visual preview and independent review against the approved brief. Publication then requires its own exact user approval and a post-deploy check.
 - A merge to `main` currently publishes through GitHub Pages. Treat that merge as a live publication transition requiring exact user approval; review acceptance alone does not authorize it.
 
-Developer, reviewer, and handoff rules come only from the umbrella instructions
-and the exact task. Do not inherit procedures from sibling repositories such as the sibling `the-bot` repository. If the umbrella does not define a detailed procedure, the exact
-task must define it without weakening the umbrella safeguards. For a static-only
-change, use the smallest relevant local validation; do not introduce a toolchain
-merely to run a check.
+Developer, reviewer, and handoff rules come only from the bundled shared common
+layer above, this landing-specific section, and the exact task. Do not inherit
+procedures from sibling repositories such as `alextim123/the-bot`. If the
+bundled shared common layer does not define a detailed procedure, the exact task
+must define it without weakening the bundled common-layer safeguards. For a
+static-only change, use the smallest relevant local validation; do not introduce
+a toolchain merely to run a check.
