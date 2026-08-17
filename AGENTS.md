@@ -51,22 +51,37 @@ operations. Platform permission prompts remain separate technical controls.
 One owner holds a deliverable at a time. Concurrent work must not overlap files,
 contracts, migrations, or remote state. A production developer implements and
 verifies; an independent reviewer performs read-only acceptance of an exact
-fixed base and head; the coordinator owns integration and user communication.
-Reviewers never fix the implementation they accept.
+fixed base and head; an independent auditor verifies governance, evidence, and
+lifecycle integrity; the coordinator owns integration and all user
+communication. Reviewers and auditors never fix the implementation they
+accept or audit.
 
 ## Direct task coordination and capability boundary
 
-User-facing terminology is “задача”. When task-management tools exist and the
-envelope authorizes task creation, the coordinator directly creates, messages,
-waits for, and archives developer, reviewer, and operator tasks. Use the chain:
+User-facing terminology is “задача”. The user has one point of contact: the
+coordinator. Researchers, developers, reviewers, auditors, and operators do not
+ask the user to relay context or manage their tasks. When task-management tools
+exist and the envelope authorizes task creation, the coordinator directly
+creates, messages, waits for, and archives every delivery task. Use the chain:
 
-`coordinator -> production developer -> independent reviewer -> coordinator`
+`coordinator -> [researcher when the research gate is declared] -> production developer -> independent reviewer -> independent auditor -> coordinator`
 
-Developers send fixed-state handoffs directly to reviewers; reviewers send
-reports directly to the coordinator and findings directly to developers.
-The coordinator monitors/waits and continues an unambiguous fix/re-review loop.
-The user is never asked to relay prompts, identifiers, findings, or routine
-status.
+The authorization envelope must state `research gate: required` or `research
+gate: not required` with a reason. Research is required when a material fact,
+external interface, feasibility constraint, or current provider behavior must
+be established before implementation; it is never inserted as ceremony after
+the implementation has begun.
+
+Each sender transfers directly to the next role a self-contained context
+package containing the original user objective, the current role prompt, an
+exact next-role prompt, the durable report, and exact evidence identities.
+Researchers send sourced findings and the proposed implementation prompt;
+developers send fixed-state implementation handoffs to reviewers; reviewers
+send accepted evidence to auditors or actionable findings directly to
+developers; auditors send their audit report to the coordinator or exact
+process/evidence findings to the responsible role. The coordinator
+monitors/waits and continues unambiguous research, fix, re-review, and re-audit
+loops without user mediation.
 
 If task tools are unavailable, never pretend they exist and never ask the user
 to act as relay. Remain in the current task when role separation is not required
@@ -90,20 +105,28 @@ Prior chat or handoff is context, never proof of current state.
 
 ## Handoff, review, archive, and rollover
 
-A durable handoff contains objective, business reason, repository/path, exact
-base/head/tree, branch/PR, lifecycle/next role, scope, boundaries, decisions,
-facts versus unknowns, implementation and user-visible effect, checks run/not
-run, residual risks, rollback, remote mutations, user action, and acceptance.
-It contains no credentials or sensitive payloads.
+A durable handoff contains the original user objective, sender role and current
+prompt, exact next role and ready-to-run next prompt, business reason,
+repository/path, exact base/head/tree or immutable artifact hashes, branch/PR,
+lifecycle, scope, boundaries, decisions, facts versus unknowns, implementation
+and user-visible effect, checks run/not run, residual risks, rollback, remote
+mutations, user action, and acceptance. It contains no credentials or sensitive
+payloads. The receiving role independently verifies the package before acting;
+chat history is never the only durable context.
 
 Lifecycle names are explicit:
 
-`briefed -> implementation complete -> review accepted -> merged -> applicable remote transitions completed -> post-checks passed`
+`briefed -> research complete when required -> implementation complete -> review accepted -> audit accepted -> merged -> applicable remote transitions completed -> post-checks passed`
 
 Open a Draft PR after a coherent baseline so exact-head CI can run. Acceptance
 requires the final fixed green head. Findings create a new fixed head and
-re-review. Merge and every deployment/migration/settings transition remain
-separately controlled. Post-merge verification proves the actual merged
+re-review and re-audit. The reviewer owns implementation acceptance. The
+auditor then checks that the original objective and acceptance criteria were
+preserved, role independence and evidence identities are real, required gates
+ran, reported claims match evidence, no forbidden or unauthorized transition
+occurred, and archive/rollover decisions are safe. Audit never substitutes for
+tests or review. Merge and every deployment/migration/settings transition
+remain separately controlled. Post-merge verification proves the actual merged
 identity and that no unauthorized transition ran.
 
 Archive a task only after the coordinator has verified its durable handoff and
@@ -126,16 +149,87 @@ invalid.
 ## Risk-tiered verification and reporting
 
 Documentation-only changes with no executable/configuration/security/remote
-effect need targeted checks and lightweight independent review. Application
-behavior needs proportional tests, exact-head CI, and independent review. Auth,
-RLS, tenancy, migrations, security, CI/CD, deployment, infrastructure, secrets,
-or production mechanisms require full exact-head evidence, controlled operator
-transitions, and post-checks. Ambiguity escalates risk.
+effect need targeted checks, lightweight independent review, and lightweight
+audit. Application behavior needs proportional tests, exact-head CI,
+independent review, and audit. Auth, RLS, tenancy, migrations, security, CI/CD,
+deployment, infrastructure, secrets, or production mechanisms require full
+exact-head evidence, controlled operator transitions, full audit, and
+post-checks. Ambiguity escalates risk.
 
 Report facts, inferences, and unknowns separately. Every material coordinator
 update states lifecycle, business capability, ecosystem boundary, covered risks
 and rollback, remaining scope/risk, next block, user action, exact `LIVE` versus
 not-`LIVE` boundary, product/tenant/security ownership, and archived tasks.
+
+## Migration governance and delivery readiness
+
+Migration work is a high-risk functional block. Before any per-migration
+artifact is written, the owner records a Delivery Readiness Gate manifest and
+the machine check for that manifest must pass. The gate identifies the exact
+repository, base and accepted implementation SHA, manifest hash, supported
+PostgreSQL matrix, migration tool and authoritative status/ledger evidence,
+rollback or forward-recovery plan, and every separately authorized transition.
+
+Use a standard migration tool first. It must provide a durable migration ledger
+or status history, checksum or equivalent drift detection, concurrency locking,
+documented transaction boundaries, and deterministic replay/idempotence
+semantics appropriate to the selected PostgreSQL versions. If any capability is
+missing or still unknown, create and accept a separate migration-foundation
+functional block before creating a migration artifact. Do not hide missing
+capabilities in an application wrapper, custom runner, or bespoke state machine.
+
+The first implementation evidence is an early authoritative proof of value on
+the supported PostgreSQL matrix. The matrix records exact engine and tool
+versions and must exercise apply, status/ledger, checksum or drift failure,
+concurrent invocation/locking, replay, rollback or forward recovery, and known
+application/automatic effects. The first coherent authoritative matrix must be
+green before per-migration delivery continues. Local emulation or a partial
+matrix may inform diagnosis but is not acceptance evidence.
+
+The manifest is a design gate, not prose decoration. Its validator must reject
+missing or placeholder identities, a non-standard or unknown tool decision,
+missing ledger/status evidence, incomplete authoritative matrix evidence,
+unknown application/automatic effects, conflated authorities, or a claim that
+the migration is live. Reviewer acceptance binds the exact base, head, tree,
+manifest SHA-256, generated-governance version/hashes, and evidence identities.
+Any content change invalidates that acceptance.
+
+Stop the functional block and report `PROCESS_BLOCKED` on the second
+preparatory PR, more than two fix cycles, a custom migration state machine, a
+second production diagnostic deploy, the first coherent authoritative matrix
+not being green, a wrapper exceeding ten times the migration SQL without a new
+explicit architecture decision, missing ledger/status, unknown application or
+automatic effects, or micro-patching a failed custom runner. A blocked process
+requires a new architecture or scope decision; it is not permission to patch
+around the gate.
+
+Authority is transition-specific. Local implementation does not authorize
+push, PR creation, merge, deployment, settings or secret changes, production
+migration application, post-checks, or publication. The accepted SHA and
+manifest hash must be re-proved at each authorized transition. A migration
+remains `NOT LIVE` after implementation, review, audit, merge, and deployment;
+only separately authorized production application followed by separately
+authorized post-checks may support a `LIVE` claim.
+
+The researcher establishes current primary-source tool and PostgreSQL behavior
+without promoting a recommendation into authority. The developer owns the
+manifest, smallest coherent implementation, early matrix PoV, generated
+artifacts, and exact evidence. The independent reviewer asks whether a standard
+tool already supplies every proposed wrapper feature, whether the wrapper is
+more than ten times the SQL, whether a second preparatory PR or more than two
+fix cycles exists, whether ledger/locking/transaction/replay semantics are
+proved, and whether any automatic effect is unknown. The independent auditor
+verifies identities, role separation, gate order, authority separation, and
+`NOT LIVE` reporting; on any stop trigger or missing evidence the auditor must
+report `PROCESS_BLOCKED`, never waive or repair it.
+
+Production diagnostics and migration evidence use minimum-necessary,
+aggregate-only data. A strict one-shot authorization permits exactly one
+allowlisted sanitized dispatch or diagnostic and then stops. Notification or
+payload content, tenant data, secrets, and unrelated records are forbidden.
+An unavailable, false, zero, empty, or sentinel result proves only
+unavailability; it never proves cleanliness, readiness, migration state, or
+absence of effects.
 
 ## Research promotion
 
