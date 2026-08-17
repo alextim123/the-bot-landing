@@ -163,73 +163,68 @@ not-`LIVE` boundary, product/tenant/security ownership, and archived tasks.
 
 ## Migration governance and delivery readiness
 
-Migration work is a high-risk functional block. Before any per-migration
-artifact is written, the owner records a Delivery Readiness Gate manifest and
-the machine check for that manifest must pass. The gate identifies the exact
-repository, base and accepted implementation SHA, manifest hash, supported
-PostgreSQL matrix, migration tool and authoritative status/ledger evidence,
-rollback or forward-recovery plan, and every separately authorized transition.
+Migration delivery is risk-proportional and tool-neutral. A standard migration
+tool is preferred, not universally mandatory. A minimal direct transactional
+mechanism is allowed when it demonstrably provides a durable applied
+status/ledger, migration identity and content hash or equivalent checksum,
+concurrency protection, deterministic transaction and replay semantics, and is
+simpler to audit than introducing a tool. Use transactions wherever PostgreSQL
+permits; document any non-transactional boundary.
 
-Use a standard migration tool first. It must provide a durable migration ledger
-or status history, checksum or equivalent drift detection, concurrency locking,
-documented transaction boundaries, and deterministic replay/idempotence
-semantics appropriate to the selected PostgreSQL versions. If any capability is
-missing or still unknown, create and accept a separate migration-foundation
-functional block before creating a migration artifact. Do not hide missing
-capabilities in an application wrapper, custom runner, or bespoke state machine.
+Every migration has a concise record in its pull request and durable handoff.
+By default it names the exact repository, base, migration identity and content
+hash; relevant supported production PostgreSQL major; one authoritative
+execution path; one ledger/status source; lock, transaction and replay
+behavior; migration-specific preflight and post-check; service-health check;
+rollback or forward-recovery boundary; and exact transition authorities. A
+machine-readable manifest and validator are optional unless risk, repeated
+automation, or repository-specific rules justify them.
 
-The first implementation evidence is an early authoritative proof of value on
-the supported PostgreSQL matrix. The matrix records exact engine and tool
-versions and must exercise apply, status/ledger, checksum or drift failure,
-concurrent invocation/locking, replay, rollback or forward recovery, and known
-application/automatic effects. The first coherent authoritative matrix must be
-green before per-migration delivery continues. Local emulation or a partial
-matrix may inform diagnosis but is not acceptance evidence.
+The preflight is fresh and proportional to the migration's actual predicates
+and risks. Test the actual supported production PostgreSQL major or majors and
+the relevant migration behavior. A second engine version or a full matrix is
+required only when the product formally supports it or the change depends on
+version-specific behavior. A CI or matrix failure is a finding: allow one
+bounded sanitized diagnosis and ordinary fix, exact-head re-review, and
+re-audit loops. Failure does not by itself create a permanent process block.
 
-The manifest is a design gate, not prose decoration. Its validator must reject
-missing or placeholder identities, a non-standard or unknown tool decision,
-missing ledger/status evidence, incomplete authoritative matrix evidence,
-unknown application/automatic effects, conflated authorities, or a claim that
-the migration is live. Reviewer acceptance binds the exact base, head, tree,
-manifest SHA-256, generated-governance version/hashes, and evidence identities.
-Any content change invalidates that acceptance.
+Foundation and per-migration delivery or application are separate functional
+blocks only when a genuinely missing reusable capability must first be built.
+Do not require a Foundation block when the repository already has a sufficient
+minimal path. Keep a complexity budget: at minimum there is one authoritative
+execution path, one ledger/status source, scoped preflight, and scoped
+post-check. A second runner, ledger, or migration state machine, or a materially
+larger control framework whose operational value is not demonstrated, requires
+an explicit architecture decision before implementation. Stop rather than
+micro-patch an unclear or duplicative control path.
 
-Stop the functional block and report `PROCESS_BLOCKED` on the second
-preparatory PR, more than two fix cycles, a custom migration state machine, a
-second production diagnostic deploy, the first coherent authoritative matrix
-not being green, a wrapper exceeding ten times the migration SQL without a new
-explicit architecture decision, missing ledger/status, unknown application or
-automatic effects, or micro-patching a failed custom runner. A blocked process
-requires a new architecture or scope decision; it is not permission to patch
-around the gate.
+Execution is one controlled invocation with concurrency protection. Production
+diagnostics and application remain one-shot, allowlisted, and free of arbitrary
+SQL, path, or target inputs. Never retry blindly after an ambiguous result:
+first establish authoritative ledger/status and service state, then obtain any
+new application authority. Migration-specific post-checks and service health
+must pass before completion is claimed.
 
-Authority is transition-specific. Local implementation does not authorize
-push, PR creation, merge, deployment, settings or secret changes, production
-migration application, post-checks, or publication. The accepted SHA and
-manifest hash must be re-proved at each authorized transition. A migration
-remains `NOT LIVE` after implementation, review, audit, merge, and deployment;
-only separately authorized production application followed by separately
-authorized post-checks may support a `LIVE` claim.
+Authority is transition-specific. Merge, deployment, settings, secrets,
+preflight, production application, post-checks, and production-data access each
+require exact authority; one does not imply another. The accepted exact head,
+tree, migration identity, and content hash are re-proved at each authorized
+transition. A migration remains `NOT LIVE` after implementation, review, audit,
+merge, and deployment. Only separately authorized production application and
+separately authorized successful post-checks may support a `LIVE` claim.
 
-The researcher establishes current primary-source tool and PostgreSQL behavior
-without promoting a recommendation into authority. The developer owns the
-manifest, smallest coherent implementation, early matrix PoV, generated
-artifacts, and exact evidence. The independent reviewer asks whether a standard
-tool already supplies every proposed wrapper feature, whether the wrapper is
-more than ten times the SQL, whether a second preparatory PR or more than two
-fix cycles exists, whether ledger/locking/transaction/replay semantics are
-proved, and whether any automatic effect is unknown. The independent auditor
-verifies identities, role separation, gate order, authority separation, and
-`NOT LIVE` reporting; on any stop trigger or missing evidence the auditor must
-report `PROCESS_BLOCKED`, never waive or repair it.
+The independent reviewer verifies the exact fixed head and the required safety
+behavior: identity/hash, scoped fresh preflight, one controlled execution,
+ledger/status and drift detection, locking, transaction/replay semantics,
+post-check and service health, recovery boundary, complexity budget, and
+authorities. The governance/evidence auditor verifies identities, role
+separation, proportional evidence, authority separation, and exact `LIVE`
+versus `NOT LIVE` reporting. Neither role repairs the implementation it accepts.
 
-Production diagnostics and migration evidence use minimum-necessary,
-aggregate-only data. A strict one-shot authorization permits exactly one
-allowlisted sanitized dispatch or diagnostic and then stops. Notification or
-payload content, tenant data, secrets, and unrelated records are forbidden.
-An unavailable, false, zero, empty, or sentinel result proves only
-unavailability; it never proves cleanliness, readiness, migration state, or
-absence of effects.
+Evidence is minimum-necessary and aggregate-only. Never expose secrets, tenant
+payloads, database rows, raw errors, or unrelated records. An unavailable,
+false, zero, empty, or sentinel result proves only unavailability; it never
+proves cleanliness, readiness, migration state, or absence of effects.
 
 ## Research promotion
 

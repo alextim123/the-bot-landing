@@ -1,10 +1,10 @@
 {
-  "common_sha256": "5aada7fcf03aceaaea93870d25ffcbea001dc2cdc71c4ab6dfb2d2bd2f847f91",
+  "common_sha256": "cdb4aa69318bce1a17e774030799e0e8bcf4ca8c00b9aad8ab1285156ec435f4",
   "generator": "scripts/generate.py",
   "overlay_sha256": "0f09110bdc290d25adb2e3a2991daa741ebb4bd4d8a01e27ff659cacc1574c9d",
   "schema": 1,
-  "snapshot_sha256": "3b8f9a9ce06444db23845b0b5906d6019044af73721274d4d33976994ca5ecb2",
+  "snapshot_sha256": "61031aeaed4e6c9f71719b43d14e09dc384ed83b36a397a25e7b007f3c7e1f1e",
   "source_repository": "alextim123/the-bot-governance",
   "target": "landing",
-  "version": "1.2.1"
+  "version": "1.3.1"
 }
