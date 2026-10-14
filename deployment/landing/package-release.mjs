@@ -9,7 +9,7 @@ const staticFiles=[
   "Screencust.mp4","assets/brand/apple-touch-icon.png","assets/brand/favicon-16-dark.png",
   "assets/brand/favicon-16-light.png","assets/brand/favicon-32-dark.png","assets/brand/favicon-32-light.png",
   "assets/brand/favicon-48-dark.png","assets/brand/favicon-48-light.png","assets/brand/favicon.ico",
-  "assets/brand/pwa-192.png","assets/brand/pwa-512.png","assets/brand/pwa-maskable-192.png",
+  "assets/brand/pwa-192.png","assets/brand/pwa-512.png","assets/brand/pwa-1024.png","assets/brand/pwa-maskable-192.png",
   "assets/brand/pwa-maskable-512.png","assets/brand/social-card-1200.png","assets/brand/source-dark.png",
   "assets/brand/source-light.png","assets/brand/source-social.png","contacts.html","hero-screencast-poster.png",
   "icon-white.png","icon.png","index.html","legal.css","logo.png","privacy.html","problem-rules.png",
