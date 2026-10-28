@@ -10,7 +10,7 @@ non-waivable boundaries below. The repository-specific section may strengthen
 product or provider boundaries. Conflicts stop only the affected action and
 return the material decision to the coordinator.
 
-Governance source: private `alextim2048/the-bot-governance`. A copied snapshot
+Governance source: private `alextim123/the-bot-governance`. A copied snapshot
 remains enforceable without access to that repository or a filesystem parent.
 Product code, configuration, secrets, and runtime data never move through the
 governance repository.
@@ -67,6 +67,54 @@ silent external effects.
   overlapping ownership, a non-waivable boundary, missing MFA or user-only
   action, destructive recovery, or an unapproved transition. Do not stop the
   whole product block for an unrelated or deferrable infrastructure issue.
+
+## GitHub source and isolated cloud development
+
+GitHub is the source of accepted code and versioned project knowledge. Record
+an exact repository and base/head, and use the repository's rules, contracts,
+checks, and reviewed task procedures. A branch or `main` is not proof of an
+active local or production release; verify installed identity and the relevant
+release or migration status separately. Preserve accepted but unpublished local
+work in its own scoped backlog or branch; never publish a whole synthetic
+preview tree as a production candidate.
+
+- Each cloud task uses its own workspace from an approved prepared environment,
+  an exact source base, and task-owned runtime and synthetic data. Starting the
+  approved task-local runtime and synthetic database is within the assigned
+  development scope; it does not authorize production access, hosted migration
+  application, provider calls, or changes to a shared environment's settings.
+- Keep the canonical Mac integration platform, SQLite, accounts, service,
+  configuration, dependencies, and its single applying owner intact. A cloud
+  task's localhost and synthetic database are not the canonical Mac platform.
+  Never mount, copy, reset, or reuse that persistent SQLite as cloud task data.
+- Local and cloud previews use the same production UI source. Adapters replace
+  only data/API and environment behavior, preserve access and tenant boundaries,
+  and keep real providers disabled. Do not create another editable UI copy.
+- Creating, publishing, sharing, or changing a cloud environment, its repository
+  access, network policy, or secret references requires explicit scoped
+  authority. Give development only the required repositories and tools, with
+  synthetic data and no production credentials or production write access.
+- An envelope may authorize commits, one normal non-force push to the named
+  task branch, and a Draft PR. This is configurable task authority, not default
+  permission to publish, write `main`, merge, deploy, or change remote settings.
+  Inspect automatic effects before an authorized push or merge. A prompt or
+  envelope is not technical branch protection. If branch-limited writes cannot
+  be enforced, cloud developers return a patch and a separately authorized
+  publisher owns remote publication.
+- Put portable team procedures and needed skills in the owning repository.
+  Do not bulk-copy personal memory, chats, local Codex configuration, secret
+  stores, session material, or runtime data into GitHub or a cloud environment.
+  Keep provider and product-specific boundaries in the nearest rules.
+- Save important work in version control and, when authorized, its task branch
+  or reviewed PR before ending the task. A saved VM is not the sole store of
+  work. Verify supported tools and checks in a fresh task; a configured setup
+  or local rehearsal does not prove cloud readiness or an unrun check passed.
+
+The common single-owner, independent-review, verification-budget, and separate
+production-transition rules apply unchanged in cloud mode. Parallel tasks must
+not overlap files, contracts, migrations, or shared state. Infrastructure or
+provider limitations stop only the affected action; record unavailable evidence
+and preserve a direct path through the existing approved local process.
 
 ## Marketing governance
 
@@ -237,7 +285,7 @@ inconclusive results; research never silently becomes a production dependency.
 
 This repository is the independent public landing, marketing, and pricing site
 for the THE БОТ ecosystem. Its local folder is `the-bot-landing`; its current
-remote repository is `alextim2048/the-bot-landing`.
+remote repository is `alextim123/the-bot-landing`.
 
 The complete shared common layer bundled above applies. This nearest file adds
 landing-specific requirements. An exact task may narrow scope, but cannot weaken
@@ -250,7 +298,7 @@ workspace or repository safety, privacy, or user-approval requirements.
   business data, or BOTAY.
 - Integrate through approved public, versioned contracts, links, or endpoints.
   Any shared authentication, database, or contract change starts in the
-  independent canonical repository `alextim2048/the-bot`. Do not infer its
+  independent canonical repository `alextim123/the-bot`. Do not infer its
   location from the landing worktree's filesystem ancestry.
 - Do not add or silently migrate platform scaffolding, product modules, schemas,
   services, or business logic into this repository.
@@ -287,7 +335,7 @@ workspace or repository safety, privacy, or user-approval requirements.
 
 Developer, reviewer, and handoff rules come only from the bundled shared common
 layer above, this landing-specific section, and the exact task. Do not inherit
-procedures from sibling repositories such as `alextim2048/the-bot`. If the
+procedures from sibling repositories such as `alextim123/the-bot`. If the
 bundled shared common layer does not define a detailed procedure, the exact task
 must define it without weakening the bundled common-layer safeguards. For a
 static-only change, use the smallest relevant local validation; do not introduce
