@@ -1,0 +1,10 @@
+{
+  "deploy": "external-github-pages",
+  "files": {
+    ".delivery/PROCESS.md": "f0bd75c609d002c0b6affea9c93e30faaa19b77740f17bbe324ade7687f88fb8",
+    ".github/workflows/ci.yml": "833c821828335e2854cfc360980a61eddcee0a242699c69b6bff1a49f5f22965"
+  },
+  "schema": 1,
+  "source_repository": "alextim123/the-bot-governance",
+  "target": "the-bot-landing"
+}
